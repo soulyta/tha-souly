@@ -1,0 +1,49 @@
+THA SOULY
+Web Developer & Data Analyst
+Location: No 290A, St.138, Trapeangchhouk Village, Sangkat Toek Thla, Khan Sen Sok, Phnom Penh
+Phone/Telegram: 010 463 544
+Email: soulyneed766@gmail.com
+Sex: Male | DOB: June 22, 2002 | Nationality: Cambodian | Marital Status: Single
+
+SUMMARY
+Passionate Computer Science graduate working as a Web Development and Data Analyst Intern. Adaptable, motivated, and eager to contribute analytical thinking, data management skills, and clean frontend code architecture to professional organizations.
+
+PROFESSIONAL EXPERIENCE
+
+Web Developer & Data Analyst Intern (December 2024 - Present)
+Primary Education Department, Ministry of Education, Youth and Sport (MoEYS)
+- Processed and validated large-scale student data in the PLP System, ensuring accuracy and completeness for over 2.2 million student records.
+- Developed and maintained frontend modules for the Model School Standard System (Infrastructure Module) using React.js and Ant Design (AntD).
+- Analyzed school databases, prepared statistical reports, and assisted in identifying and resolving data quality inconsistencies.
+- Performed rigorous system testing in production environments before deployment to ensure module functionality.
+- Provided direct technical support, troubleshooting guidelines, and instruction to teachers and education officers.
+- Coordinated meetings, workshops, administrative documentation, and collaborated with cross-functional teams to improve system usability.
+
+Office of Data Entry (July 2024 - November 2024)
+2U Delivery Company
+- Ensured accurate and efficient data entry into the company’s software system, improving overall data integrity.
+- Managed stock-in and stock-out processes, extracting daily stock-in and stock-out data.
+- Set up products in the warehouse to be delivered to clients.
+- Provided product-related information to shop staff, resolving issues promptly.
+- Input product details into the system and calculated store cash registers for successful delivery confirmation.
+- Calculated and verified driver collections for all cash-on-delivery (COD) customer products.
+- Reconciled and checked all cash collections before final submission to the General Manager (GM).
+
+EDUCATION
+
+Bachelor of Computer Science (2020 - 2024)
+Royal University of Phnom Penh (RUPP)
+- Focused on database systems, software engineering, and responsive web programming.
+
+Diploma in English (2022 - 2026)
+Paññāsāstra University of Cambodia (PUC)
+- Professional communication, presentations, and technical writing.
+
+High School Diploma (2014 - 2020)
+Dam Dek High School
+
+TECHNICAL & SOFT SKILLS
+- Web Development: Front-End Development, React.js & Ant Design, System Testing / QA
+- Data & Analytics: Data Entry & Data Management, Data Analysis & Reporting, Microsoft Office
+- Productivity & Media: AI Tools for Productivity, Video & Audio Editing, Photography
+- Communication & Languages: Communication & Teamwork, Khmer (Native, 98%), English (Professional, 50%)
