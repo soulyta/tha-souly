@@ -555,7 +555,7 @@
    ========================================== */
 .skills-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2rem;
 }
 
@@ -712,7 +712,37 @@
 }
 
 @media (max-width: 768px) {
+  .navbar-header.scrolled {
+    background: var(--bg-primary);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
   .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-visual .glass-panel {
+    width: 100%;
+    max-width: 340px;
+  }
+
+  .timeline-item {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  .timeline-card-col {
+    padding-left: 3.5rem;
+  }
+
+  .experience-card {
+    padding: 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .stats-grid {
     grid-template-columns: 1fr;
   }
 }
@@ -1154,7 +1184,9 @@
 .profile-blob-container {
   position: relative;
   width: 280px;
-  height: 280px;
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
   margin-bottom: 1.5rem;
   display: flex;
   justify-content: center;
