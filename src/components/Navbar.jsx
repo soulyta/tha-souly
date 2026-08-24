@@ -54,7 +54,7 @@ export default function Navbar({ theme, toggleTheme }) {
         <div className="navbar-actions">
           <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
           
-          <a href="/cv.pdf" download="Thasouly CV.pdf" className="cv-btn cv-desktop">
+          <a href="./ThasoulyCV.pdf" download="Thasouly CV.pdf" className="cv-btn cv-desktop">
             <Download size={16} />
             <span>CV</span>
           </a>
@@ -77,7 +77,7 @@ export default function Navbar({ theme, toggleTheme }) {
               {link.name}
             </a>
           ))}
-          <a href="/cv.pdf" download="Thasouly CV.pdf" className="cv-btn cv-mobile" onClick={handleLinkClick}>
+          <a href="./ThasoulyCV.pdf" download="Thasouly CV.pdf" className="cv-btn cv-mobile" onClick={handleLinkClick}>
             <Download size={16} />
             <span>Download CV</span>
           </a>
