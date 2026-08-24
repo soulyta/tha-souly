@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Tha Souly - CV</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      color: #1e293b;
+      background-color: #ffffff;
+      line-height: 1.5;
+      padding: 40px;
+      font-size: 13px;
+    }
+    .header {
+      border-bottom: 2px solid #6366f1;
+      padding-bottom: 15px;
+      margin-bottom: 20px;
+    }
+    .name {
+      font-size: 28px;
+      font-weight: 800;
+      color: #0f172a;
+      letter-spacing: -0.5px;
+      line-height: 1.1;
+    }
+    .title {
+      font-size: 16px;
+      font-weight: 600;
+      color: #6366f1;
+      margin-top: 5px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 5px 20px;
+      margin-top: 12px;
+      font-size: 12px;
+      color: #475569;
+    }
+    .contact-item {
+      display: flex;
+      align-items: center;
+    }
+    .contact-item span {
+      font-weight: 600;
+      color: #334155;
+      margin-right: 5px;
+    }
+    .section {
+      margin-bottom: 20px;
+    }
+    .section-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #0f172a;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      border-bottom: 1px solid #e2e8f0;
+      padding-bottom: 4px;
+      margin-bottom: 10px;
+    }
+    .summary-text {
+      color: #334155;
+      text-align: justify;
+    }
+    .job {
+      margin-bottom: 15px;
+    }
+    .job-header {
+      display: flex;
+      justify-content: space-between;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 3px;
+    }
+    .job-company {
+      font-style: italic;
+      color: #475569;
+      font-weight: 500;
+      margin-bottom: 6px;
+    }
+    .job-bullets {
+      list-style-type: disc;
+      padding-left: 18px;
+      color: #334155;
+    }
+    .job-bullets li {
+      margin-bottom: 4px;
+    }
+    .edu-item {
+      margin-bottom: 10px;
+    }
+    .edu-header {
+      display: flex;
+      justify-content: space-between;
+      font-weight: 700;
+      color: #0f172a;
+    }
+    .edu-school {
+      color: #475569;
+      font-style: italic;
+    }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px 20px;
+    }
+    .skill-category {
+      font-size: 12px;
+    }
+    .skill-category strong {
+      color: #0f172a;
+    }
+    .skill-list-text {
+      color: #475569;
+      margin-top: 2px;
+    }
+    
+    @media print {
+      body {
+        padding: 0;
+        font-size: 12px;
+      }
+      .header {
+        margin-bottom: 15px;
+      }
+      .section {
+        margin-bottom: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <div class="name">THA SOULY</div>
+    <div class="title">Web Developer & Data Analyst</div>
+    <div class="contact-grid">
+      <div class="contact-item"><span>Email:</span> soulyneed766@gmail.com</div>
+      <div class="contact-item"><span>Phone/Telegram:</span> 010 463 544</div>
+      <div class="contact-item" style="grid-column: span 2;">
+        <span>Address:</span> No 290A, St.138, Trapeangchhouk Village, Sangkat Toek Thla, Khan Sen Sok, Phnom Penh
+      </div>
+      <div class="contact-item" style="grid-column: span 2; font-size: 11px; color: #64748b; margin-top: 4px; border-top: 1px dashed #e2e8f0; padding-top: 4px;">
+        Sex: Male &nbsp;|&nbsp; Date of Birth: June 22, 2002 &nbsp;|&nbsp; Nationality: Cambodian &nbsp;|&nbsp; Marital Status: Single
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Professional Summary</div>
+    <p class="summary-text">
+      Passionate Computer Science graduate working as a Web Development and Data Analyst Intern. Adaptable, motivated, and eager to contribute analytical thinking, data management skills, and clean frontend code architecture to professional organizations. Eager to apply database validation and software engineering skills to new sectors.
+    </p>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Professional Experience</div>
+    
+    <div class="job">
+      <div class="job-header">
+        <span>Web Developer & Data Analyst Intern</span>
+        <span>Dec 2024 - Present</span>
+      </div>
+      <div class="job-company">Primary Education Department, Ministry of Education, Youth and Sport (MoEYS)</div>
+      <ul class="job-bullets">
+        <li>Processed and validated large-scale student data in the PLP System, ensuring accuracy and completeness for over 2.2 million student records.</li>
+        <li>Developed and maintained frontend modules for the Model School Standard System (Infrastructure Module) using React.js and Ant Design (AntD).</li>
+        <li>Analyzed school databases, prepared statistical reports, and assisted in identifying and resolving data quality inconsistencies.</li>
+        <li>Performed rigorous system testing in production environments before deployment to ensure module functionality.</li>
+        <li>Provided direct technical support, troubleshooting guidelines, and instruction to teachers and education officers.</li>
+        <li>Coordinated meetings, workshops, administrative documentation, and collaborated with cross-functional teams to improve system usability.</li>
+      </ul>
+    </div>
+
+    <div class="job" style="margin-bottom: 0;">
+      <div class="job-header">
+        <span>Office of Data Entry</span>
+        <span>Jul 2024 - Nov 2024</span>
+      </div>
+      <div class="job-company">2U Delivery Company</div>
+      <ul class="job-bullets">
+        <li>Ensured accurate and efficient data entry into the company’s software system, improving overall data integrity.</li>
+        <li>Managed stock-in and stock-out processes, extracting daily stock-in-out data and setting up products in the warehouse.</li>
+        <li>Provided product-related information to shop staff, resolving issues promptly.</li>
+        <li>Calculated and verified driver collections for cash-on-delivery (COD) customer products and store cash registers.</li>
+        <li>Reconciled and checked all cash collections before final submission to the General Manager (GM).</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Education</div>
+    
+    <div class="edu-item">
+      <div class="edu-header">
+        <span>Bachelor of Computer Science</span>
+        <span>2020 - 2024</span>
+      </div>
+      <div class="edu-school">Royal University of Phnom Penh (RUPP)</div>
+    </div>
+
+    <div class="edu-item">
+      <div class="edu-header">
+        <span>Diploma in English</span>
+        <span>2022 - 2026</span>
+      </div>
+      <div class="edu-school">Paññāsāstra University of Cambodia (PUC)</div>
+    </div>
+
+    <div class="edu-item" style="margin-bottom: 0;">
+      <div class="edu-header">
+        <span>High School Diploma</span>
+        <span>2014 - 2020</span>
+      </div>
+      <div class="edu-school">Dam Dek High School</div>
+    </div>
+  </div>
+
+  <div class="section" style="margin-bottom: 0;">
+    <div class="section-title">Skills Overview</div>
+    <div class="skills-grid">
+      <div class="skill-category">
+        <strong>Web Development</strong>
+        <div class="skill-list-text">Front-End Development, React.js & Ant Design, System Testing / QA</div>
+      </div>
+      <div class="skill-category">
+        <strong>Data & Analytics</strong>
+        <div class="skill-list-text">Data Entry & Data Management, Data Analysis & Reporting, Microsoft Office</div>
+      </div>
+      <div class="skill-category">
+        <strong>Productivity & Media</strong>
+        <div class="skill-list-text">AI Tools for Productivity, Video & Audio Editing (CapCut), Photography</div>
+      </div>
+      <div class="skill-category">
+        <strong>Communication & Languages</strong>
+        <div class="skill-list-text">Communication & Teamwork, Khmer (Native), English (Professional)</div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
