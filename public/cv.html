@@ -12,6 +12,11 @@
       padding: 0;
     }
     
+    @page {
+      size: A4;
+      margin: 0;
+    }
+
     body {
       font-family: 'Plus Jakarta Sans', sans-serif;
       color: #334155;
@@ -27,10 +32,13 @@
       background-color: #ffffff;
       display: flex;
       margin: 30px auto;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
       overflow: hidden;
-      page-break-after: always;
       position: relative;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    }
+
+    .page:not(:last-of-type) {
+      page-break-after: always;
     }
 
     @media print {
@@ -42,6 +50,9 @@
         margin: 0;
         box-shadow: none;
         page-break-after: always;
+      }
+      .page:last-of-type {
+        page-break-after: avoid !important;
       }
     }
 
@@ -406,15 +417,15 @@
       <div class="sidebar-section">
         <div class="contact-item">
           <svg class="contact-icon" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.622k-1.04 5.002a11.947 11.947 0 00-6.84 6.84l5.002 1.04c.563.117 1.01.508 1.173 1.059l1.45 4.83a1.125 1.125 0 001.91.07l2.253-3.003a2.625 2.625 0 013.003-3.003l3.003 2.253a1.125 1.125 0 001.07 1.91l4.83-1.45a1.125 1.125 0 001.06-1.173z" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
           </svg>
-          <div class="contact-text">+855 61463544/010463544</div>
+          <div class="contact-text">010 463 544</div>
         </div>
         <div class="contact-item">
           <svg class="contact-icon" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"></path>
           </svg>
-          <div class="contact-text">thasouly22@gmail.com</div>
+          <div class="contact-text">soulyneed766@gmail.com</div>
         </div>
         <div class="contact-item">
           <svg class="contact-icon" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -430,21 +441,23 @@
         <div class="sidebar-title">Education</div>
         
         <div class="edu-item">
-          <div class="edu-degree">Bachelor's degree in Computer Science</div>
-          <div class="edu-school">Royal University of Phnom Penh</div>
-          <div class="edu-date">(2020-2024)</div>
+          <div class="edu-degree">Bachelor of Computer Science</div>
+          <div class="edu-school">Royal University of Phnom Penh (RUPP)</div>
+          <div class="edu-school" style="font-weight: normal; font-size: 9.5px; color: #475569;">Focus on database systems, software engineering, and responsive web programming.</div>
+          <div class="edu-date">(2020 - 2024)</div>
         </div>
         
         <div class="edu-item">
           <div class="edu-degree">Diploma in English</div>
-          <div class="edu-school">Paññāsāstra University of Cambodia</div>
-          <div class="edu-date">(2022-2026)</div>
+          <div class="edu-school">Paññāsāstra University of Cambodia (PUC)</div>
+          <div class="edu-school" style="font-weight: normal; font-size: 9.5px; color: #475569;">Professional communication, presentations, and technical writing.</div>
+          <div class="edu-date">(2022 - 2026)</div>
         </div>
 
         <div class="edu-item" style="margin-bottom: 0;">
-          <div class="edu-degree">Graduate at High School</div>
+          <div class="edu-degree">High School Diploma</div>
           <div class="edu-school">Dam Dek High School</div>
-          <div class="edu-date">(2014 -2020)</div>
+          <div class="edu-date">(2014 - 2020)</div>
         </div>
       </div>
 
@@ -468,7 +481,7 @@
         
         <div class="lang-item">
           <div class="lang-label">
-            <span>Khmer</span>
+            <span>Khmer (Native)</span>
             <span>98%</span>
           </div>
           <div class="lang-bar-bg">
@@ -478,7 +491,7 @@
 
         <div class="lang-item" style="margin-bottom: 0;">
           <div class="lang-label">
-            <span>English</span>
+            <span>English (Professional)</span>
             <span>50%</span>
           </div>
           <div class="lang-bar-bg">
@@ -507,7 +520,7 @@
             <div class="section-name">Profile</div>
           </div>
           <p class="profile-text">
-            I hold a Bachelor’s degree in Computer Science and am currently working as a Web Development and Data Management Intern. I am eager to learn, adaptable, and motivated to contribute positively to a professional team and organization.
+            Passionate Computer Science graduate working as a Web Development and Data Analyst Intern. Adaptable, motivated, and eager to contribute analytical thinking, data management skills, and clean frontend code architecture to professional organizations.
           </p>
         </div>
 
@@ -527,7 +540,7 @@
             <div class="info-value">: June 22, 2002</div>
 
             <div class="info-label">Place of Birth</div>
-            <div class="info-value" style="font-size: 11px;">: Doun Hong Village, Dam Dek Commune, SoutrNikom District, Siem Reap Province.</div>
+            <div class="info-value">: Dam Dek, Siem Reap, Cambodia</div>
 
             <div class="info-label">Nationality</div>
             <div class="info-value">: Cambodian</div>
@@ -547,20 +560,17 @@
           </div>
 
           <div class="timeline-item">
-            <div class="timeline-date">March 2025 -<br/>Present</div>
+            <div class="timeline-date">December 2024 -<br/>Present</div>
             <div class="timeline-content">
-              <div class="job-title">Web Developer & Data Management Intern</div>
-              <div class="job-company">Primary Education Department, Ministry of Education Youth and Sport</div>
+              <div class="job-title">Web Developer & Data Analyst Intern</div>
+              <div class="job-company">Primary Education Department, Ministry of Education, Youth and Sport (MoEYS)</div>
               <ul class="job-bullets">
-                <li>Analyzed and organized training and assessment data, and prepared summary reports for project evaluation and decision-making.</li>
-                <li>Processed large-scale student data in the PLP System, ensuring accuracy and completeness for over 2.2 million student records.</li>
-                <li>Assisted in monitoring data quality and resolving inconsistencies.</li>
-                <li>Developed and maintained front-end code related to the Model School Standard System (Infrastructure Module).</li>
-                <li>Performed system testing in the production environment before implementation to verify functionality and identify issues.</li>
-                <li>Supported teachers and education officers with system usage, troubleshooting, and responding to user inquiries.</li>
-                <li>Familiar with React.js and Ant Design for front-end development projects.</li>
-                <li>Assisted in meetings, workshops, training activities, and administrative documentation.</li>
-                <li>Collaborated with team members to improve workflow efficiency and system usability.</li>
+                <li>Processed and validated large-scale student data in the PLP System, ensuring accuracy and completeness for over 2.2 million student records.</li>
+                <li>Developed and maintained frontend modules for the Model School Standard System (Infrastructure Module) using React.js and Ant Design (AntD).</li>
+                <li>Analyzed school databases, prepared statistical reports, and assisted in identifying and resolving data quality inconsistencies.</li>
+                <li>Performed rigorous system testing in production environments before deployment to ensure module functionality.</li>
+                <li>Provided direct technical support, troubleshooting guidelines, and instruction to teachers and education officers.</li>
+                <li>Coordinated meetings, workshops, administrative documentation, and collaborated with cross-functional teams to improve system usability.</li>
               </ul>
             </div>
           </div>
@@ -584,15 +594,15 @@
             <div class="timeline-date">July 2024 -<br/>November 2024</div>
             <div class="timeline-content">
               <div class="job-title">Office of Data Entry</div>
-              <div class="job-company">2U Delivery Company.</div>
+              <div class="job-company">2U Delivery Company</div>
               <ul class="job-bullets">
                 <li>Ensured accurate and efficient data entry into the company’s software system, improving overall data integrity.</li>
-                <li>Managed stock-in and stock-out processes, extract daily stock-in and stock-out data.</li>
-                <li>Set up products in a warehouse that are delivered to the Client.</li>
+                <li>Managed stock-in and stock-out processes, extracting daily stock-in and stock-out data.</li>
+                <li>Set up products in the warehouse to be delivered to clients.</li>
                 <li>Provided product-related information to shop staff, resolving issues promptly.</li>
-                <li>Fill all a product in the System and Calculate cash into the shop for success on delivery.</li>
-                <li>Calculate Cash Driver all products that are delivered to the Customer.</li>
-                <li>Count and Check any Cash to GM that is received from the Customer.</li>
+                <li>Input product details into the system and calculated store cash registers for successful delivery confirmation.</li>
+                <li>Calculated and verified driver collections for all cash-on-delivery (COD) customer products.</li>
+                <li>Reconciled and checked all cash collections before final submission to the General Manager (GM).</li>
               </ul>
             </div>
           </div>

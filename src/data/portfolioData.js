@@ -25,8 +25,8 @@ export const personalDetails = {
   socials: {
     github: "https://github.com/soulyta",
     linkedin: "https://linkedin.com/in/soulyta",
-    email: "thasouly22@gmail.com",
-    phone: "+855 61463544 / 010463544",
+    email: "soulyneed766@gmail.com",
+    phone: "010463544",
     telegram: "https://t.me/soly_009"
   }
 };
