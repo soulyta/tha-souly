@@ -8,6 +8,7 @@ import {
   Send,
   ArrowUp
 } from 'lucide-react';
+import { ConfigProvider, Progress, Tooltip, theme as antdTheme } from 'antd';
 
 const GithubIcon = ({ size = 20, ...props }) => (
   <svg
@@ -45,6 +46,80 @@ const LinkedinIcon = ({ size = 20, ...props }) => (
     <circle cx="4" cy="4" r="2" />
   </svg>
 );
+
+const renderTechIcon = (iconName) => {
+  switch (iconName) {
+    case 'react':
+      return (
+        <svg viewBox="-11.5 -10.23 23 20.46" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <ellipse rx="11" ry="4.2" stroke="#61dafb" strokeWidth="1"/>
+          <ellipse rx="11" ry="4.2" transform="rotate(60)" stroke="#61dafb" strokeWidth="1"/>
+          <ellipse rx="11" ry="4.2" transform="rotate(120)" stroke="#61dafb" strokeWidth="1"/>
+          <circle r="2" fill="#61dafb"/>
+        </svg>
+      );
+    case 'html':
+      return (
+        <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+          <path fill="#e34f26" d="M71 460L39 0h434l-32 460-185 52z"/>
+          <path fill="#f06529" d="M256 472l149-41 27-386H256z"/>
+          <path fill="#ebebeb" d="M256 176h-83v35h83v110l-83-22-5-60h-35l10 115 113 31zM256 94h-86v35h86z"/>
+          <path fill="#fff" d="M256 176v35h83l-8 87-75 21v35l113-31 16-182zM256 94v35h86l8-35z"/>
+        </svg>
+      );
+    case 'css':
+      return (
+        <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+          <path fill="#1572b6" d="M71 460L39 0h434l-32 460-185 52z"/>
+          <path fill="#33a9dc" d="M256 472l149-41 27-386H256z"/>
+          <path fill="#ebebeb" d="M256 208h-83v35h83v110l-83-22-5-60h-35l10 115 113 31zM256 126h-86v35h86z"/>
+          <path fill="#fff" d="M256 208v35h83l-8 87-75 21v35l113-31 16-182zM256 126v35h86l8-35z"/>
+        </svg>
+      );
+    case 'antd':
+      return (
+        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+          <path d="M981.7 186.6c-8.8-38.4-47.3-62.8-86-54.6L592 197c-5.4 1.1-10.2 4.4-13.4 9.1L436.9 417.8l-156.4-96.1c-13.5-8.3-31.1-7-43.2 3.1L58.2 474.3c-23.7 19.6-27.2 54.4-7.8 78.2l207.2 253c7 8.5 17.6 13.5 28.7 13.5H912c61.9 0 112-50.1 112-112v-448c0-30.6-12.4-59.2-34.3-80.4c-2-1.9-4.2-3.9-6.3-5.8c-23.8-21.7-56-34-89.7-34l-8.6-.2zM826 690H320l-160-200 134-110 326 200V276l190-40c.8-.2 1.6-.2 2.4-.2c6.6 0 12 5.4 12 12v430c0 6.6-5.4 12-12 12z" fill="#1890ff"/>
+        </svg>
+      );
+    case 'excel':
+      return (
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2" y="2" width="20" height="20" rx="4" fill="#EAF6EC" />
+          <path d="M4 6C4 4.89543 4.89543 4 6 4H14L20 10V18C20 19.1046 19.1046 20 18 20H6C4.89543 20 4 19.1046 4 18V6Z" fill="#107C41" />
+          <path d="M14 4V10H20" fill="#0A5C30" />
+          <path d="M7.5 8.5L9.5 11.5L11.5 8.5H13L10.5 12L13 15.5H11.5L9.5 12.5L7.5 15.5H6L8.5 12L6 8.5H7.5Z" fill="white" />
+        </svg>
+      );
+    case 'word':
+      return (
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2" y="2" width="20" height="20" rx="4" fill="#EBF3FC" />
+          <path d="M4 6C4 4.89543 4.89543 4 6 4H14L20 10V18C20 19.1046 19.1046 20 18 20H6C4.89543 20 4 19.1046 4 18V6Z" fill="#185ABD" />
+          <path d="M14 4V10H20" fill="#104A9E" />
+          <path d="M7 8.5L9.2 15H10.8L13 8.5H11.5L10 13.5L8.5 8.5H7Z" fill="white" />
+        </svg>
+      );
+    case 'powerpoint':
+      return (
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2" y="2" width="20" height="20" rx="4" fill="#FDF1EC" />
+          <path d="M4 6C4 4.89543 4.89543 4 6 4H14L20 10V18C20 19.1046 19.1046 20 18 20H6C4.89543 20 4 19.1046 4 18V6Z" fill="#C43E1C" />
+          <path d="M14 4V10H20" fill="#9E3014" />
+          <path d="M7 8.5H10.5C11.88 8.5 13 9.62 13 11C13 12.38 11.88 13.5 10.5 13.5H8.5V15.5H7V8.5ZM8.5 10V12H10.5C11.05 12 11.5 11.55 11.5 11C11.5 10.45 11.05 10 10.5 10H8.5Z" fill="white" />
+        </svg>
+      );
+    case 'capcut':
+      return (
+        <svg viewBox="0 0 25 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path d="M24.189 6.442V2.671l-4.535 2.383V4.91c.002-1.505-1.078-2.411-2.638-2.411H2.64C.993 2.5 0 3.407 0 4.91V8.72L6.354 12 0 15.316v3.8C0 20.595 1 21.5 2.64 21.5h14.373c1.56 0 2.639-.907 2.639-2.382v-.197l4.536 2.409v-3.828L13.64 12 24.19 6.443zM9.982 13.873l7.797 4.083H2.157l7.825-4.083zm7.741-7.828l-7.742 4.057-7.825-4.057h15.567z" />
+        </svg>
+      );
+    default:
+      return null;
+  }
+};
+
 import Navbar from './components/Navbar';
 import {
   personalDetails,
@@ -309,29 +384,66 @@ function App() {
               <h2 className="section-title">Technical Skills</h2>
             </div>
             
-            <div className="skills-grid">
-              {skillsData.map((category, index) => (
-                <div key={index} className="glass-panel skills-category-card">
-                  <h3 className="category-title">{category.category}</h3>
-                  <div className="skills-list">
-                    {category.skills.map((skill, sIndex) => (
-                      <div key={sIndex} className="skill-item">
-                        <div className="skill-info">
-                          <span className="skill-name">{skill.name}</span>
-                          <span className="skill-percentage">{skill.percentage}%</span>
+            <ConfigProvider
+              theme={{
+                algorithm: theme === 'dark' ? antdTheme.darkAlgorithm : antdTheme.defaultAlgorithm,
+                token: {
+                  colorPrimary: theme === 'dark' ? '#818cf8' : '#6366f1',
+                  borderRadius: 12,
+                  fontFamily: 'var(--font-body)',
+                },
+              }}
+            >
+              <div className="skills-grid">
+                {skillsData.map((category, index) => (
+                  <div key={index} className="glass-panel skills-category-card">
+                    <h3 className="category-title">{category.category}</h3>
+                    <div className="skills-list">
+                      {category.skills.map((skill, sIndex) => (
+                        <div key={sIndex} className="skill-item" style={{ marginBottom: '0.25rem' }}>
+                          <div className="skill-info" style={{ marginBottom: '0.25rem' }}>
+                            <span className="skill-name" style={{ color: 'var(--text-primary)', fontWeight: 600 }}>{skill.name}</span>
+                          </div>
+                          <Progress
+                            percent={skill.percentage}
+                            status="active"
+                            strokeColor={{
+                              '0%': theme === 'dark' ? '#818cf8' : '#6366f1',
+                              '100%': '#a855f7',
+                            }}
+                            trailColor="var(--border)"
+                            showInfo={true}
+                            format={(percent) => (
+                              <span style={{ color: theme === 'dark' ? '#818cf8' : '#6366f1', fontWeight: 600 }}>
+                                {percent}%
+                              </span>
+                            )}
+                          />
                         </div>
-                        <div className="skill-track">
-                          <div 
-                            className="skill-bar" 
-                            style={{ width: `${skill.percentage}%` }}
-                          ></div>
+                      ))}
+                    </div>
+
+                    {category.technologies && category.technologies.length > 0 && (
+                      <div className="category-tech-section">
+                        <h4 className="tech-section-title">Tools & Technologies</h4>
+                        <div className="tech-badges-grid">
+                          {category.technologies.map((tech, tIdx) => (
+                            <Tooltip key={tIdx} title={`Proficient in ${tech.name}`} placement="top">
+                              <div className="tech-badge-card">
+                                <div className="tech-badge-icon">
+                                  {renderTechIcon(tech.icon)}
+                                </div>
+                                <span className="tech-badge-name">{tech.name}</span>
+                              </div>
+                            </Tooltip>
+                          ))}
                         </div>
                       </div>
-                    ))}
+                    )}
                   </div>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
+            </ConfigProvider>
           </div>
         </section>
 

@@ -10,7 +10,7 @@ export const personalDetails = {
   ],
   stats: [
     { label: "Student Records Managed", value: "2.2M+" },
-    { label: "Years in Tech & Analysis", value: "3+" },
+    { label: "Years in Tech & Analysis", value: "2+" },
     { label: "Core Technologies", value: "React/AntD" },
     { label: "Systems Supported", value: "Nationwide" }
   ],
@@ -38,6 +38,12 @@ export const skillsData = [
       { name: "Front-End Development", percentage: 70 },
       { name: "React.js & Ant Design", percentage: 40 },
       { name: "System Testing / QA", percentage: 60 }
+    ],
+    technologies: [
+      { name: "React.js", icon: "react" },
+      { name: "HTML5", icon: "html" },
+      { name: "CSS3", icon: "css" },
+      { name: "Ant Design", icon: "antd" }
     ]
   },
   {
@@ -46,6 +52,11 @@ export const skillsData = [
       { name: "Data Entry & Data Management", percentage: 75 },
       { name: "Data Analysis & Reporting", percentage: 70 },
       { name: "Microsoft Office", percentage: 80 }
+    ],
+    technologies: [
+      { name: "MS Excel", icon: "excel" },
+      { name: "MS Word", icon: "word" },
+      { name: "MS PowerPoint", icon: "powerpoint" }
     ]
   },
   {
@@ -54,6 +65,9 @@ export const skillsData = [
       { name: "AI Tools for Productivity", percentage: 85 },
       { name: "Video & Audio Editing", percentage: 65 },
       { name: "Photography", percentage: 60 }
+    ],
+    technologies: [
+      { name: "CapCut", icon: "capcut" }
     ]
   },
   {

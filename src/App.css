@@ -615,6 +615,67 @@
   transition: width 1s ease-in-out;
 }
 
+/* Tech Grid Styling inside Skills cards */
+.category-tech-section {
+  margin-top: 1.75rem;
+  border-top: 1px solid var(--border);
+  padding-top: 1.25rem;
+}
+
+.tech-section-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--text-secondary);
+  margin-bottom: 0.75rem;
+}
+
+.tech-badges-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  gap: 0.75rem;
+}
+
+.tech-badge-card {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+.tech-badge-card:hover {
+  transform: translateY(-2px);
+  background: var(--accent-light);
+  border-color: var(--accent-border);
+  box-shadow: 0 4px 12px var(--accent-border);
+}
+
+.tech-badge-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.tech-badge-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.tech-badge-name {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
 
 /* ==========================================
    Projects Section
