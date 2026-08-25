@@ -9,8 +9,10 @@ SUMMARY
 I hold a Bachelor’s degree in Computer Science and am currently working as a Web Development and Data Analyst Intern. I am eager to learn, adaptable, and motivated to contribute positively to a professional team and organization.
 PROFESSIONAL EXPERIENCE
 
-Web Developer & Data Analyst Intern (December 2024 - Present)
-Primary Education Department, Ministry of Education, Youth and Sport (MoEYS)
+December 2024 -
+Present
+Web Developer & Data Analyst Intern
+Department of Primary Education, Ministry of Education, Youth and Sport (MoEYS)
 - Processed and validated large-scale student data in the PLP System, ensuring accuracy and completeness for over 2.2 million student records.
 - Developed and maintained frontend modules for the Model School Standard System (Infrastructure Module) using React.js and Ant Design (AntD).
 - Analyzed school databases, prepared statistical reports, and assisted in identifying and resolving data quality inconsistencies.
@@ -18,7 +20,9 @@ Primary Education Department, Ministry of Education, Youth and Sport (MoEYS)
 - Provided direct technical support, troubleshooting guidelines, and instruction to teachers and education officers.
 - Coordinated meetings, workshops, administrative documentation, and collaborated with cross-functional teams to improve system usability.
 
-Office of Data Entry (July 2024 - November 2024)
+July 2024 -
+November 2024
+Office of Data Entry
 2U Delivery Company
 - Ensured accurate and efficient data entry into the company’s software system, improving overall data integrity.
 - Managed stock-in and stock-out processes, extracting daily stock-in and stock-out data.
@@ -30,14 +34,17 @@ Office of Data Entry (July 2024 - November 2024)
 
 EDUCATION
 
-Bachelor of Computer Science (2020 - 2024)
+Bachelor of Computer Science
 Royal University of Phnom Penh (RUPP)
+(2020 - 2024)
 
-Diploma in English (2022 - 2026)
+Diploma in English
 Paññāsāstra University of Cambodia (PUC)
+(2022 - 2026)
 
-High School Diploma (2014 - 2020)
+High School Diploma
 Dam Dek High School
+(2014 - 2020)
 
 TECHNICAL & SOFT SKILLS
 - Web Development: Front-End Development, React.js & Ant Design, System Testing / QA
