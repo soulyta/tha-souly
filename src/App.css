@@ -1240,3 +1240,141 @@
     border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
   }
 }
+
+/* ==========================================
+   macOS Terminal/Code Editor Mockup
+   ========================================== */
+.mac-terminal {
+  background-color: #0e1117;
+  border-radius: 12px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  font-family: 'Fira Code', 'Courier New', Courier, monospace;
+  overflow: hidden;
+  text-align: left;
+  width: 100%;
+}
+
+[data-theme='light'] .mac-terminal {
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.mac-header {
+  background-color: #161b22;
+  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.mac-controls {
+  display: flex;
+  gap: 6px;
+}
+
+.mac-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.mac-dot.red { background-color: #ff5f56; }
+.mac-dot.yellow { background-color: #ffbd2e; }
+.mac-dot.green { background-color: #27c93f; }
+
+.mac-title {
+  background-color: #0e1117;
+  color: #8b949e;
+  font-size: 0.8rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.mac-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  color: #8b949e;
+}
+
+.mac-status-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #238636;
+  border-radius: 50%;
+  display: inline-block;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(35, 134, 54, 0.7); }
+  70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(35, 134, 54, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(35, 134, 54, 0); }
+}
+
+.mac-body {
+  padding: 1.25rem;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  display: flex;
+  overflow-x: auto;
+}
+
+.mac-line-numbers {
+  color: #484f58;
+  text-align: right;
+  padding-right: 1rem;
+  user-select: none;
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.mac-code {
+  padding-left: 1rem;
+  color: #c9d1d9;
+  flex-grow: 1;
+}
+
+/* Syntax Highlighting Colors */
+.code-keyword { color: #ff7b72; font-weight: 600; } /* const, return, export */
+.code-name { color: #d2a8ff; } /* developer */
+.code-property { color: #79c0ff; } /* name, role, stack */
+.code-string { color: #a5d6ff; } /* string values */
+.code-bracket { color: #f8e3a1; } /* curly brackets */
+.code-method { color: #d2a8ff; } /* deploy() */
+.code-comment { color: #8b949e; font-style: italic; }
+
+.mac-footer {
+  background-color: #161b22;
+  padding: 0.5rem 1rem;
+  font-size: 0.8rem;
+  color: #8b949e;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.terminal-prompt {
+  color: #58a6ff;
+}
+
+.cursor-blink {
+  width: 8px;
+  height: 15px;
+  background-color: #58a6ff;
+  display: inline-block;
+  vertical-align: middle;
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  from, to { background-color: transparent; }
+  50% { background-color: #58a6ff; }
+}

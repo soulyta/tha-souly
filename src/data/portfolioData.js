@@ -37,10 +37,13 @@ export const skillsData = [
       { name: "System Testing / QA", percentage: 60 }
     ],
     technologies: [
+      { name: "JavaScript", icon: "javascript" },
       { name: "React.js", icon: "react" },
       { name: "HTML5", icon: "html" },
       { name: "CSS3", icon: "css" },
-      { name: "Ant Design", icon: "antd" }
+      { name: "Ant Design", icon: "antd" },
+      { name: "Git", icon: "git" },
+      { name: "Docker", icon: "docker" }
     ]
   },
   {
@@ -59,9 +62,9 @@ export const skillsData = [
   {
     category: "Productivity & Media",
     skills: [
-      { name: "AI Tools for Productivity", percentage: 85 },
-      { name: "Video & Audio Editing", percentage: 65 },
-      { name: "Photography", percentage: 60 }
+      { name: "AI Tools for Productivity", percentage: 75 },
+      { name: "Video & Audio Editing", percentage: 50 },
+      { name: "Photography", percentage: 50 }
     ],
     technologies: [
       { name: "CapCut", icon: "capcut" }
@@ -70,7 +73,7 @@ export const skillsData = [
   {
     category: "Communication & Languages",
     skills: [
-      { name: "Communication & Teamwork", percentage: 90 },
+      { name: "Communication & Teamwork", percentage: 80 },
       { name: "Khmer (Native)", percentage: 98 },
       { name: "English (Professional)", percentage: 50 }
     ]
@@ -83,7 +86,7 @@ export const projectsData = [
     title: "PLP Student Data System",
     description: "Successfully processed, validated, and managed database records for over 2.2 million students nationwide, maintaining strict data quality control and preparing comprehensive statistical reports.",
     imageName: "plpuser.jpg",
-    techStack: ["Data Validation", "Large Datasets", "Reports Prep", "Database"],
+    techStack: ["Data Validation", "Large Datasets", "Reports Prep"],
     githubLink: "https://github.com/soulyta-dev/plp-data-system",
     liveLink: "https://plp.moeys.gov.kh",
     featured: true
