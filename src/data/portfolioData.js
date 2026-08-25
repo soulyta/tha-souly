@@ -3,10 +3,7 @@ export const personalDetails = {
   title: "Web Developer & Data Analyst",
   tagline: "Computer Science Graduate & Web Developer Intern passionate about frontend development (React/AntD) and high-scale data analytics.",
   bio: [
-    "I hold a Bachelor’s degree in Computer Science and am currently working as a Web Development and Data Analyst Intern. I am eager to learn, adaptable, and motivated to contribute positively to a professional team and organization.",
-    "In my current role as a Web Developer & Data Analysis Intern at the Department of Primary Education, Ministry of Education, Youth and Sport, I have successfully managed and validated more than 2.2 million student records in the PLP System, ensuring data accuracy and consistency.",
-    "In addition to data management, I have developed and maintained system modules using React.js and Ant Design, participated in system testing, and provided technical support to teachers and education officers. These experiences have strengthened my analytical thinking, problem-solving skills, and attention to detail.",
-    "Although my experience is in the education sector, I am eager to apply my data management and analytical skills to new sectors such as real estate and the pawnshop business. I am a fast learner, highly adaptable, and confident that I can contribute effectively to your organization."
+    "I hold a Bachelor’s degree in Computer Science and have experience in web development, data management, and data analysis.In my current role at the Department of Primary Education, Ministry of Education, Youth and Sport, I have managed and validated over 2.2 million student records, developed system modules using React.js and Ant Design, and provided technical support and system testing. I am a fast learner, adaptable, detail-oriented, and eager to apply my technical and analytical skills to new industries and contribute effectively to a professional team."
   ],
   stats: [
     { label: "Student Records Managed", value: "2.2M+" },
@@ -117,7 +114,7 @@ export const experienceData = [
   {
     id: 1,
     role: "Web Developer & Data Analyst Intern",
-    company: "Primary Education Department, Ministry of Education, Youth and Sport (MoEYS)",
+    company: "Department of Primary Education, Ministry of Education, Youth and Sport (MoEYS)",
     period: "March 2025 - Present",
     description: [
       "Process large-scale student data in the PLP System, ensuring accuracy and completeness for over 2.2 million student records.",
@@ -150,22 +147,19 @@ export const educationData = [
     id: 1,
     degree: "Bachelor's Degree in Computer Science",
     school: "Royal University of Phnom Penh (RUPP)",
-    period: "2020 - 2024",
-    details: "Focus on software engineering, database management systems, and web application architectures."
+    period: "2020 - 2024"
   },
   {
     id: 2,
     degree: "Diploma in English",
     school: "Paññāsāstra University of Cambodia (PUC)",
-    period: "2022 - 2026",
-    details: "Strengthening professional communication, presentation, and technical writing skills in English."
+    period: "2022 - 2026"
   },
   {
     id: 3,
     degree: "High School Graduate",
     school: "Dam Dek High School",
-    period: "2014 - 2020",
-    details: "Solid foundations in Mathematics, Physics, and Science."
+    period: "2014 - 2020"
   }
 ];
 
