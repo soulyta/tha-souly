@@ -208,12 +208,7 @@
     radial-gradient(circle at 90% 80%, var(--accent-light) 0%, transparent 40%);
 }
 
-.hero-grid {
-  display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
-  gap: 3rem;
-  align-items: center;
-}
+/* hero-grid is handled by Ant Design */
 
 .hero-content {
   text-align: left;
@@ -444,11 +439,7 @@
 }
 
 @media (max-width: 1024px) {
-  .hero-grid {
-    grid-template-columns: 1fr;
-    gap: 4rem;
-    text-align: center;
-  }
+  /* hero-grid media query is handled by Ant Design */
   .hero-content {
     text-align: center;
     display: flex;
@@ -496,12 +487,7 @@
 /* ==========================================
    About Section
    ========================================== */
-.about-grid {
-  display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap: 3.5rem;
-  align-items: center;
-}
+/* about-grid is handled by Ant Design */
 
 .about-text {
   text-align: left;
@@ -514,11 +500,7 @@
   margin-bottom: 1.5rem;
 }
 
-.stats-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.25rem;
-}
+/* stats-grid is handled by Ant Design */
 
 .stat-card {
   padding: 1.5rem;
@@ -540,10 +522,7 @@
 }
 
 @media (max-width: 1024px) {
-  .about-grid {
-    grid-template-columns: 1fr;
-    gap: 3rem;
-  }
+  /* about-grid media query is handled by Ant Design */
   .about-text {
     text-align: center;
   }
@@ -553,11 +532,7 @@
 /* ==========================================
    Skills Section
    ========================================== */
-.skills-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
-}
+/* skills-grid is handled by Ant Design */
 
 .skills-category-card {
   padding: 2rem;
@@ -680,11 +655,7 @@
 /* ==========================================
    Projects Section
    ========================================== */
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-  gap: 2.5rem;
-}
+/* projects-grid is handled by Ant Design */
 
 .project-card {
   height: 100%;
@@ -779,9 +750,7 @@
     -webkit-backdrop-filter: none;
   }
 
-  .projects-grid {
-    grid-template-columns: 1fr;
-  }
+  /* projects-grid media query is handled by Ant Design */
 
   .hero-visual .glass-panel {
     width: 100%;
@@ -803,9 +772,7 @@
 }
 
 @media (max-width: 480px) {
-  .stats-grid {
-    grid-template-columns: 1fr;
-  }
+  /* stats-grid media query is handled by Ant Design */
 }
 
 
@@ -966,11 +933,7 @@
 /* ==========================================
    Certificates Section
    ========================================== */
-.certificates-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
-}
+/* certificates-grid is handled by Ant Design */
 
 .certificate-card {
   padding: 1.5rem;
@@ -1024,12 +987,7 @@
 /* ==========================================
    Contact Section
    ========================================== */
-.contact-grid {
-  display: grid;
-  grid-template-columns: 0.9fr 1.1fr;
-  gap: 4rem;
-  text-align: left;
-}
+/* contact-grid is handled by Ant Design */
 
 .contact-info {
   display: flex;

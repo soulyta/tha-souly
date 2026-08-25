@@ -1,14 +1,33 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { 
   Mail, 
   ExternalLink, 
   MapPin, 
   Briefcase, 
-  Award, 
   Send,
-  ArrowUp
 } from 'lucide-react';
-import { ConfigProvider, Progress, Tooltip, theme as antdTheme } from 'antd';
+import { 
+  ConfigProvider, 
+  Progress, 
+  Tooltip, 
+  theme as antdTheme,
+  Layout,
+  Row,
+  Col,
+  Card,
+  Timeline,
+  Typography,
+  Form,
+  Input,
+  Button,
+  Space,
+  Divider,
+  Tag,
+  FloatButton,
+  message
+} from 'antd';
+
+const { Title, Text, Paragraph } = Typography;
 
 const GithubIcon = ({ size = 20, ...props }) => (
   <svg
@@ -133,106 +152,35 @@ import profileImg from './assets/tha_souly.jpg';
 import './App.css';
 
 function App() {
-  // Theme state initialization
   const [theme, setTheme] = useState(() => {
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme) return savedTheme;
-    
-    // Fallback to system preference
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     return prefersDark ? 'dark' : 'light';
   });
 
-  // Contact form state
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
-  });
-  const [formStatus, setFormStatus] = useState({
-    type: '', // 'success' or 'error'
-    message: ''
-  });
+  const [form] = Form.useForm();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Show "Back to top" button
-  const [showScrollTop, setShowScrollTop] = useState(false);
-
-  // Toggle theme handler
   const toggleTheme = () => {
     const nextTheme = theme === 'light' ? 'dark' : 'light';
     setTheme(nextTheme);
   };
 
-  // Sync theme with document class and local storage
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
     localStorage.setItem('theme', theme);
   }, [theme]);
 
-  // Scroll listener for "Back to top" button
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 400) {
-        setShowScrollTop(true);
-      } else {
-        setShowScrollTop(false);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  // Handle input changes
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value
-    }));
-  };
-
-  // Handle contact form submission
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    
-    // Quick validation
-    if (!formData.name || !formData.email || !formData.message) {
-      setFormStatus({
-        type: 'error',
-        message: 'Please fill in all required fields.'
-      });
-      return;
-    }
-
-    // Basic email validation regex
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(formData.email)) {
-      setFormStatus({
-        type: 'error',
-        message: 'Please provide a valid email address.'
-      });
-      return;
-    }
-
+  const handleFormSubmit = (values) => {
     setIsSubmitting(true);
-    setFormStatus({ type: '', message: '' });
+    console.log('Contact form submitted with values:', values);
 
     // Mock API submission
     setTimeout(() => {
       setIsSubmitting(false);
-      setFormStatus({
-        type: 'success',
-        message: 'Thank you! Your message has been sent successfully. I will get back to you soon.'
-      });
-      setFormData({
-        name: '',
-        email: '',
-        subject: '',
-        message: ''
-      });
+      message.success('Thank you! Your message has been sent successfully. I will get back to you soon.');
+      form.resetFields();
     }, 1500);
   };
 
@@ -244,569 +192,624 @@ function App() {
   };
 
   return (
-    <div className="portfolio-app">
-      {/* Navigation */}
-      <Navbar theme={theme} toggleTheme={toggleTheme} />
+    <ConfigProvider
+      theme={{
+        algorithm: theme === 'dark' ? antdTheme.darkAlgorithm : antdTheme.defaultAlgorithm,
+        token: {
+          colorPrimary: theme === 'dark' ? '#818cf8' : '#6366f1',
+          borderRadius: 16,
+          fontFamily: "'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+          colorBgContainer: theme === 'dark' ? 'rgba(19, 28, 49, 0.75)' : 'rgba(255, 255, 255, 0.75)',
+          colorBorder: theme === 'dark' ? '#1e293b' : '#e2e8f0',
+        },
+        components: {
+          Card: {
+            colorBgContainer: theme === 'dark' ? 'rgba(19, 28, 49, 0.6)' : 'rgba(255, 255, 255, 0.6)',
+          },
+          Button: {
+            borderRadius: 12,
+            controlHeight: 40,
+          }
+        }
+      }}
+    >
+      <Layout className="portfolio-app" style={{ minHeight: '100vh', background: 'transparent' }}>
+        {/* Navigation */}
+        <Navbar theme={theme} toggleTheme={toggleTheme} />
 
-      {/* Main Content */}
-      <main>
-        
-        {/* ==================== HOME / HERO ==================== */}
-        <section id="home" className="section hero-section">
-          <div className="container">
-            <div className="hero-grid">
-              
-              {/* Left Content */}
-              <div className="hero-content animate-fade-in-up">
-                <span className="hero-tagline-badge">✨ Available for new opportunities</span>
-                <h1 className="hero-title">
-                  Hi, I'm <span className="gradient-text">{personalDetails.name}</span>
-                </h1>
-                <h2 className="hero-subtitle" style={{ fontSize: '1.75rem', fontWeight: 600, marginBottom: '1rem', color: 'var(--text-primary)' }}>
-                  {personalDetails.title}
-                </h2>
-                <p className="hero-description">
-                  {personalDetails.tagline}
-                </p>
+        {/* Main Content */}
+        <Layout.Content style={{ marginTop: '70px', background: 'transparent' }}>
+          
+          {/* ==================== HOME / HERO ==================== */}
+          <section id="home" className="section hero-section">
+            <div className="container">
+              <Row gutter={[48, 48]} align="middle" className="hero-grid">
                 
-                <div className="hero-actions">
-                  <button onClick={() => scrollToSection('projects')} className="btn btn-primary">
-                    View My Work
-                  </button>
-                  <button onClick={() => scrollToSection('contact')} className="btn btn-secondary">
-                    Contact Me
-                  </button>
-                </div>
-                
-                <div className="hero-socials">
-                  <a href={personalDetails.socials.github} target="_blank" rel="noopener noreferrer" className="social-icon" aria-label="GitHub">
-                    <GithubIcon size={20} />
-                  </a>
-                  <a href={personalDetails.socials.linkedin} target="_blank" rel="noopener noreferrer" className="social-icon" aria-label="LinkedIn">
-                    <LinkedinIcon size={20} />
-                  </a>
-                  <a href={`mailto:${personalDetails.socials.email}`} className="social-icon" aria-label="Email">
-                    <Mail size={20} />
-                  </a>
-                </div>
-              </div>
-              
-              {/* Right Visual */}
-              <div className="hero-visual animate-float">
-                <div className="glow-blob glow-1"></div>
-                <div className="glow-blob glow-2"></div>
-                
-                <div className="glass-panel" style={{ padding: '1.5rem', borderRadius: '24px', position: 'relative', zIndex: 2, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                  <div className="profile-blob-container">
-                    <img 
-                      src={profileImg} 
-                      alt={personalDetails.name} 
-                      className="profile-blob-image"
+                {/* Left Content */}
+                <Col xs={24} lg={14} className="hero-content animate-fade-in-up">
+                  <span className="hero-tagline-badge">✨ Available for new opportunities</span>
+                  <Title level={1} className="hero-title" style={{ margin: '1rem 0' }}>
+                    Hi, I'm <span className="gradient-text">{personalDetails.name}</span>
+                  </Title>
+                  <Title level={2} style={{ fontSize: '1.75rem', fontWeight: 600, marginBottom: '1.5rem', marginTop: 0 }}>
+                    {personalDetails.title}
+                  </Title>
+                  <Paragraph className="hero-description" style={{ fontSize: '1.15rem', color: 'var(--text-secondary)' }}>
+                    {personalDetails.tagline}
+                  </Paragraph>
+                  
+                  <Space size="middle" className="hero-actions" style={{ marginBottom: '2.5rem', display: 'flex', flexWrap: 'wrap' }}>
+                    <Button 
+                      type="primary" 
+                      size="large" 
+                      onClick={() => scrollToSection('projects')}
+                      style={{ height: '48px', padding: '0 2rem', fontWeight: 600, backgroundColor: 'var(--accent)', borderColor: 'var(--accent)' }}
+                    >
+                      View My Work
+                    </Button>
+                    <Button 
+                      size="large" 
+                      onClick={() => scrollToSection('contact')}
+                      style={{ height: '48px', padding: '0 2rem', fontWeight: 600 }}
+                    >
+                      Contact Me
+                    </Button>
+                  </Space>
+                  
+                  <Space size="middle" className="hero-socials">
+                    <Button
+                      shape="circle"
+                      size="large"
+                      icon={<GithubIcon size={20} />}
+                      href={personalDetails.socials.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="social-icon"
+                      aria-label="GitHub"
                     />
-                  </div>
-                  <div style={{ textAlign: 'center', width: '100%' }}>
-                    <h3 style={{ fontSize: '1.25rem', color: 'var(--text-primary)', marginBottom: '0.25rem' }}>{personalDetails.name}</h3>
-                    <p style={{ fontSize: '0.85rem', color: 'var(--accent)', fontWeight: 600 }}>React.js & Data Analyst</p>
-                  </div>
-                </div>
-              </div>
-              
-            </div>
-          </div>
-        </section>
-
-        {/* ==================== ABOUT ==================== */}
-        <section id="about" className="section">
-          <div className="container">
-            <div className="section-header">
-              <span className="section-subtitle">Get to know me</span>
-              <h2 className="section-title">About Me</h2>
-            </div>
-            
-            <div className="about-grid">
-              <div className="about-text">
-                {personalDetails.bio.map((paragraph, index) => (
-                  <p key={index} className="about-bio">
-                    {paragraph}
-                  </p>
-                ))}
-                <div style={{ marginTop: '2rem' }}>
-                  <h3 style={{ marginBottom: '1rem', fontSize: '1.25rem' }}>My core philosophy:</h3>
-                  <p style={{ fontStyle: 'italic', borderLeft: '3px solid var(--accent)', paddingLeft: '1rem', color: 'var(--text-secondary)' }}>
-                    "Data integrity drives correct insights, and clean frontend architecture empowers user productivity. I strive to design web systems that make complicated data processing look effortless."
-                  </p>
-                </div>
-              </div>
-              
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-                <div className="stats-grid">
-                  {personalDetails.stats.map((stat, index) => (
-                    <div key={index} className="glass-panel stat-card" style={{ padding: '1rem' }}>
-                      <div className="stat-number" style={{ fontSize: '2rem' }}>{stat.value}</div>
-                      <div className="stat-label" style={{ fontSize: '0.8rem' }}>{stat.label}</div>
-                    </div>
-                  ))}
-                </div>
+                    <Button
+                      shape="circle"
+                      size="large"
+                      icon={<LinkedinIcon size={20} />}
+                      href={personalDetails.socials.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="social-icon"
+                      aria-label="LinkedIn"
+                    />
+                    <Button
+                      shape="circle"
+                      size="large"
+                      icon={<Mail size={20} />}
+                      href={`mailto:${personalDetails.socials.email}`}
+                      className="social-icon"
+                      aria-label="Email"
+                    />
+                  </Space>
+                </Col>
                 
-                {/* Personal Profile Info Card */}
-                <div className="glass-panel" style={{ padding: '1.5rem', textAlign: 'left' }}>
-                  <h3 style={{ marginBottom: '1rem', fontSize: '1.15rem', color: 'var(--text-primary)', borderBottom: '1px solid var(--border)', paddingBottom: '0.5rem' }}>Personal Profile</h3>
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.5fr', gap: '0.65rem 1rem', fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
-                    <span style={{ fontWeight: '700', color: 'var(--text-primary)' }}>Gender:</span>
-                    <span>{personalDetails.personalInfo.sex}</span>
-                    
-                    <span style={{ fontWeight: '700', color: 'var(--text-primary)' }}>Birthdate:</span>
-                    <span>{personalDetails.personalInfo.dob}</span>
-                    
-                    <span style={{ fontWeight: '700', color: 'var(--text-primary)' }}>Origin:</span>
-                    <span>{personalDetails.personalInfo.pob}</span>
-                    
-                    <span style={{ fontWeight: '700', color: 'var(--text-primary)' }}>Nationality:</span>
-                    <span>{personalDetails.personalInfo.nationality}</span>
-                    
-                    <span style={{ fontWeight: '700', color: 'var(--text-primary)' }}>Marital Status:</span>
-                    <span>{personalDetails.personalInfo.status}</span>
-                    
-                    <span style={{ fontWeight: '700', color: 'var(--text-primary)' }}>Location:</span>
-                    <span style={{ fontSize: '0.8rem' }}>{personalDetails.personalInfo.address}</span>
-                  </div>
-                </div>
-              </div>
+                {/* Right Visual */}
+                <Col xs={24} lg={10} className="hero-visual animate-float">
+                  <div className="glow-blob glow-1"></div>
+                  <div className="glow-blob glow-2"></div>
+                  
+                  <Card 
+                    className="glass-panel" 
+                    styles={{ body: { padding: '1.5rem', display: 'flex', flexDirection: 'column', alignItems: 'center' } }}
+                    style={{ borderRadius: '24px', position: 'relative', zIndex: 2, border: '1px solid var(--border-glass)' }}
+                  >
+                    <div className="profile-blob-container" style={{ marginBottom: '1rem' }}>
+                      <img 
+                        src={profileImg} 
+                        alt={personalDetails.name} 
+                        className="profile-blob-image"
+                      />
+                    </div>
+                    <div style={{ textAlign: 'center', width: '100%' }}>
+                      <Title level={3} style={{ fontSize: '1.25rem', margin: '0 0 0.25rem 0' }}>{personalDetails.name}</Title>
+                      <Text style={{ fontSize: '0.85rem', color: 'var(--accent)', fontWeight: 600 }}>React.js & Data Analyst</Text>
+                    </div>
+                  </Card>
+                </Col>
+                
+              </Row>
             </div>
-          </div>
-        </section>
+          </section>
 
-        {/* ==================== SKILLS ==================== */}
-        <section id="skills" className="section">
-          <div className="container">
-            <div className="section-header">
-              <span className="section-subtitle">My Expertise</span>
-              <h2 className="section-title">Technical Skills</h2>
+          {/* ==================== ABOUT ==================== */}
+          <section id="about" className="section">
+            <div className="container">
+              <div className="section-header">
+                <span className="section-subtitle">Get to know me</span>
+                <Title level={2} className="section-title">About Me</Title>
+              </div>
+              
+              <Row gutter={[48, 32]} align="middle" className="about-grid">
+                <Col xs={24} lg={12} className="about-text">
+                  {personalDetails.bio.map((paragraph, index) => (
+                    <Paragraph key={index} className="about-bio" style={{ fontSize: '1.05rem', lineHeight: '1.7' }}>
+                      {paragraph}
+                    </Paragraph>
+                  ))}
+                  <div style={{ marginTop: '2rem' }}>
+                    <Title level={3} style={{ marginBottom: '1rem', fontSize: '1.25rem' }}>My core philosophy:</Title>
+                    <Paragraph style={{ fontStyle: 'italic', borderLeft: '3px solid var(--accent)', paddingLeft: '1rem', color: 'var(--text-secondary)' }}>
+                      "Data integrity drives correct insights, and clean frontend architecture empowers user productivity. I strive to design web systems that make complicated data processing look effortless."
+                    </Paragraph>
+                  </div>
+                </Col>
+                
+                <Col xs={24} lg={12} style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                  <Row gutter={[20, 20]} className="stats-grid">
+                    {personalDetails.stats.map((stat, index) => (
+                      <Col span={12} key={index}>
+                        <Card className="glass-panel stat-card" styles={{ body: { padding: '1.5rem', textAlign: 'center' } }}>
+                          <div className="stat-number" style={{ fontSize: '2.25rem', fontWeight: 800, color: 'var(--accent)', marginBottom: '0.25rem' }}>{stat.value}</div>
+                          <Text className="stat-label" style={{ fontSize: '0.85rem', fontWeight: 600 }}>{stat.label}</Text>
+                        </Card>
+                      </Col>
+                    ))}
+                  </Row>
+                  
+                  {/* Personal Profile Info Card */}
+                  <Card className="glass-panel" styles={{ body: { padding: '1.5rem' } }}>
+                    <Title level={3} style={{ marginBottom: '1rem', fontSize: '1.15rem', borderBottom: '1px solid var(--border)', paddingBottom: '0.5rem', marginTop: 0 }}>Personal Profile</Title>
+                    <Row gutter={[16, 10]} style={{ fontSize: '0.85rem' }}>
+                      <Col span={9} style={{ fontWeight: '700' }}><Text>Gender:</Text></Col>
+                      <Col span={15}><Text type="secondary">{personalDetails.personalInfo.sex}</Text></Col>
+                      
+                      <Col span={9} style={{ fontWeight: '700' }}><Text>Birthdate:</Text></Col>
+                      <Col span={15}><Text type="secondary">{personalDetails.personalInfo.dob}</Text></Col>
+                      
+                      <Col span={9} style={{ fontWeight: '700' }}><Text>Origin:</Text></Col>
+                      <Col span={15}><Text type="secondary">{personalDetails.personalInfo.pob}</Text></Col>
+                      
+                      <Col span={9} style={{ fontWeight: '700' }}><Text>Nationality:</Text></Col>
+                      <Col span={15}><Text type="secondary">{personalDetails.personalInfo.nationality}</Text></Col>
+                      
+                      <Col span={9} style={{ fontWeight: '700' }}><Text>Marital Status:</Text></Col>
+                      <Col span={15}><Text type="secondary">{personalDetails.personalInfo.status}</Text></Col>
+                      
+                      <Col span={9} style={{ fontWeight: '700' }}><Text>Location:</Text></Col>
+                      <Col span={15}><Text type="secondary" style={{ fontSize: '0.8rem' }}>{personalDetails.personalInfo.address}</Text></Col>
+                    </Row>
+                  </Card>
+                </Col>
+              </Row>
             </div>
-            
-            <ConfigProvider
-              theme={{
-                algorithm: theme === 'dark' ? antdTheme.darkAlgorithm : antdTheme.defaultAlgorithm,
-                token: {
-                  colorPrimary: theme === 'dark' ? '#818cf8' : '#6366f1',
-                  borderRadius: 12,
-                  fontFamily: 'var(--font-body)',
-                },
-              }}
-            >
-              <div className="skills-grid">
+          </section>
+
+          {/* ==================== SKILLS ==================== */}
+          <section id="skills" className="section">
+            <div className="container">
+              <div className="section-header">
+                <span className="section-subtitle">My Expertise</span>
+                <Title level={2} className="section-title">Technical Skills</Title>
+              </div>
+              
+              <Row gutter={[24, 24]} className="skills-grid">
                 {skillsData.map((category, index) => (
-                  <div key={index} className="glass-panel skills-category-card">
-                    <h3 className="category-title">{category.category}</h3>
-                    <div className="skills-list">
-                      {category.skills.map((skill, sIndex) => (
-                        <div key={sIndex} className="skill-item" style={{ marginBottom: '0.25rem' }}>
-                          <div className="skill-info" style={{ marginBottom: '0.25rem' }}>
-                            <span className="skill-name" style={{ color: 'var(--text-primary)', fontWeight: 600 }}>{skill.name}</span>
+                  <Col xs={24} md={12} lg={6} key={index}>
+                    <Card className="glass-panel skills-category-card" styles={{ body: { padding: '1.75rem', height: '100%' } }} style={{ height: '100%' }}>
+                      <Title level={3} className="category-title" style={{ fontSize: '1.2rem', marginBottom: '1.5rem', marginTop: 0 }}>{category.category}</Title>
+                      <div className="skills-list" style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                        {category.skills.map((skill, sIndex) => (
+                          <div key={sIndex} className="skill-item">
+                            <div className="skill-info" style={{ display: 'flex', justifySelf: 'stretch', justifyContent: 'space-between', marginBottom: '0.25rem', fontSize: '0.85rem' }}>
+                              <Text strong>{skill.name}</Text>
+                            </div>
+                            <Progress
+                              percent={skill.percentage}
+                              status="active"
+                              strokeColor={{
+                                '0%': theme === 'dark' ? '#818cf8' : '#6366f1',
+                                '100%': '#a855f7',
+                              }}
+                              railColor="var(--border)"
+                              showInfo={true}
+                              format={(percent) => (
+                                <Text strong style={{ color: theme === 'dark' ? '#818cf8' : '#6366f1', fontSize: '0.8rem' }}>
+                                  {percent}%
+                                </Text>
+                              )}
+                            />
                           </div>
-                          <Progress
-                            percent={skill.percentage}
-                            status="active"
-                            strokeColor={{
-                              '0%': theme === 'dark' ? '#818cf8' : '#6366f1',
-                              '100%': '#a855f7',
-                            }}
-                            trailColor="var(--border)"
-                            showInfo={true}
-                            format={(percent) => (
-                              <span style={{ color: theme === 'dark' ? '#818cf8' : '#6366f1', fontWeight: 600 }}>
-                                {percent}%
-                              </span>
-                            )}
+                        ))}
+                      </div>
+
+                      {category.technologies && category.technologies.length > 0 && (
+                        <div className="category-tech-section" style={{ marginTop: '1.5rem', borderTop: '1px solid var(--border)', paddingTop: '1rem' }}>
+                          <Title level={4} className="tech-section-title" style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginBottom: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Tools & Technologies</Title>
+                          <Space size={[8, 8]} wrap>
+                            {category.technologies.map((tech, tIdx) => (
+                              <Tooltip key={tIdx} title={`Proficient in ${tech.name}`} placement="top">
+                                <div className="tech-badge-card" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', padding: '0.4rem 0.65rem', border: '1px solid var(--border)', borderRadius: '8px', cursor: 'pointer', whiteSpace: 'nowrap' }}>
+                                  <div className="tech-badge-icon" style={{ width: '16px', height: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                    {renderTechIcon(tech.icon)}
+                                  </div>
+                                  <Text style={{ fontSize: '0.75rem', fontWeight: 600 }}>{tech.name}</Text>
+                                </div>
+                              </Tooltip>
+                            ))}
+                          </Space>
+                        </div>
+                      )}
+                    </Card>
+                  </Col>
+                ))}
+              </Row>
+            </div>
+          </section>
+
+          {/* ==================== PROJECTS ==================== */}
+          <section id="projects" className="section">
+            <div className="container">
+              <div className="section-header">
+                <span className="section-subtitle">Portfolio Showcases</span>
+                <Title level={2} className="section-title">Recent Projects</Title>
+              </div>
+              
+              <Row gutter={[32, 32]} className="projects-grid">
+                {projectsData.map((project) => (
+                  <Col xs={24} md={12} lg={8} key={project.id}>
+                    <Card 
+                      hoverable 
+                      className="glass-panel project-card"
+                      cover={
+                        <div className="project-img-wrapper" style={{ height: '200px', overflow: 'hidden' }}>
+                          <img 
+                            src={`/${project.imageName.trim()}`} 
+                            alt={project.title} 
+                            style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.5s ease' }}
+                            className="project-img"
                           />
                         </div>
-                      ))}
-                    </div>
-
-                    {category.technologies && category.technologies.length > 0 && (
-                      <div className="category-tech-section">
-                        <h4 className="tech-section-title">Tools & Technologies</h4>
-                        <div className="tech-badges-grid">
-                          {category.technologies.map((tech, tIdx) => (
-                            <Tooltip key={tIdx} title={`Proficient in ${tech.name}`} placement="top">
-                              <div className="tech-badge-card">
-                                <div className="tech-badge-icon">
-                                  {renderTechIcon(tech.icon)}
-                                </div>
-                                <span className="tech-badge-name">{tech.name}</span>
-                              </div>
-                            </Tooltip>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                ))}
-              </div>
-            </ConfigProvider>
-          </div>
-        </section>
-
-        {/* ==================== PROJECTS ==================== */}
-        <section id="projects" className="section">
-          <div className="container">
-            <div className="section-header">
-              <span className="section-subtitle">Portfolio Showcases</span>
-              <h2 className="section-title">Recent Projects</h2>
-            </div>
-            
-            <div className="projects-grid">
-              {projectsData.map((project) => (
-                <article key={project.id} className="glass-panel project-card">
-                  <div className="project-img-wrapper">
-                    <img 
-                      src={`/${project.imageName}`} 
-                      alt={project.title} 
-                      className="project-img"
-                    />
-                  </div>
-                  
-                  <div className="project-card-content">
-                    <h3 className="project-card-title">{project.title}</h3>
-                    <p className="project-card-description">{project.description}</p>
-                    
-                    <div className="project-tech-list">
-                      {project.techStack.map((tech, tIndex) => (
-                        <span key={tIndex} className="tech-tag">{tech}</span>
-                      ))}
-                    </div>
-                    
-                    <div className="project-actions">
-                      <a 
-                        href={project.githubLink} 
-                        target="_blank" 
-                        rel="noopener noreferrer" 
-                        className="project-btn"
-                      >
-                        <GithubIcon size={16} />
-                        <span>Code</span>
-                      </a>
-                      <a 
-                        href={project.liveLink} 
-                        target="_blank" 
-                        rel="noopener noreferrer" 
-                        className="project-btn"
-                      >
-                        <ExternalLink size={16} />
-                        <span>Live Demo</span>
-                      </a>
-                    </div>
-                  </div>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ==================== EXPERIENCE ==================== */}
-        <section id="experience" className="section">
-          <div className="container">
-            <div className="section-header">
-              <span className="section-subtitle">Career Path</span>
-              <h2 className="section-title">Work Experience</h2>
-            </div>
-            
-            <div className="experience-container">
-              {experienceData.map((exp) => (
-                <div key={exp.id} className="timeline-item">
-                  <div className="timeline-dot"></div>
-                  
-                  <div className="timeline-period-col">
-                    <span>{exp.period}</span>
-                  </div>
-                  
-                  <div className="timeline-card-col">
-                    <div className="glass-panel experience-card">
-                      <div className="experience-card-header">
-                        <h3 className="experience-role">{exp.role}</h3>
-                        <span className="experience-company">{exp.company}</span>
-                      </div>
-                      <ul className="experience-bullets">
-                        {exp.description.map((bullet, bIndex) => (
-                          <li key={bIndex}>{bullet}</li>
+                      }
+                      styles={{ body: { padding: '1.5rem', display: 'flex', flexDirection: 'column', flexGrow: 1 } }}
+                      style={{ height: '100%', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}
+                    >
+                      <Title level={3} style={{ fontSize: '1.25rem', marginBottom: '0.5rem', marginTop: 0 }}>{project.title}</Title>
+                      <Paragraph type="secondary" style={{ fontSize: '0.9rem', marginBottom: '1.25rem', flexGrow: 1 }}>
+                        {project.description}
+                      </Paragraph>
+                      
+                      <div className="project-tech-list" style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginBottom: '1.5rem' }}>
+                        {project.techStack.map((tech, tIndex) => (
+                          <Tag key={tIndex} color="blue" style={{ border: 'none', background: 'var(--accent-light)', color: 'var(--accent)', fontWeight: 600 }}>
+                            {tech}
+                          </Tag>
                         ))}
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ==================== CERTIFICATES ==================== */}
-        <section id="certificates" className="section">
-          <div className="container">
-            <div className="section-header">
-              <span className="section-subtitle">Qualifications</span>
-              <h2 className="section-title">Education & Certificates</h2>
-            </div>
-            
-            {/* Education Sub-Section */}
-            <div style={{ marginBottom: '4rem' }}>
-              <h3 style={{ textTransform: 'uppercase', letterSpacing: '1px', fontSize: '1.25rem', color: 'var(--text-primary)', marginBottom: '1.5rem', borderLeft: '4px solid var(--accent)', paddingLeft: '0.75rem', textAlign: 'left' }}>Academic Background</h3>
-              <div className="certificates-grid">
-                {educationData.map((edu) => (
-                  <div key={edu.id} className="glass-panel certificate-card" style={{ padding: '1.75rem' }}>
-                    <div className="cert-top">
-                      <h4 style={{ fontSize: '1.2rem', marginBottom: '0.5rem' }}>{edu.degree}</h4>
-                      <span className="cert-issuer" style={{ color: 'var(--accent)' }}>{edu.school}</span>
-                    </div>
-                    <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', margin: '1rem 0' }}>{edu.details}</p>
-                    <div className="cert-bottom" style={{ borderTop: '1px solid var(--border)', paddingTop: '1rem', marginTop: 'auto' }}>
-                      <span className="cert-date">{edu.period}</span>
-                    </div>
-                  </div>
+                      </div>
+                      
+                      <Row gutter={12}>
+                        <Col span={12}>
+                          <Button 
+                            block 
+                            icon={<GithubIcon size={14} style={{ verticalAlign: 'middle' }} />}
+                            href={project.githubLink}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '4px' }}
+                          >
+                            Code
+                          </Button>
+                        </Col>
+                        <Col span={12}>
+                          <Button 
+                            block 
+                            type="primary"
+                            icon={<ExternalLink size={14} style={{ verticalAlign: 'middle' }} />}
+                            href={project.liveLink}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '4px', backgroundColor: 'var(--accent)', borderColor: 'var(--accent)' }}
+                          >
+                            Live Demo
+                          </Button>
+                        </Col>
+                      </Row>
+                    </Card>
+                  </Col>
                 ))}
-              </div>
+              </Row>
             </div>
+          </section>
 
-            {/* Certificates Sub-Section */}
-            <div>
-              <h3 style={{ textTransform: 'uppercase', letterSpacing: '1px', fontSize: '1.25rem', color: 'var(--text-primary)', marginBottom: '1.5rem', borderLeft: '4px solid var(--accent)', paddingLeft: '0.75rem', textAlign: 'left' }}>Certificates & Credentials</h3>
-              <div className="certificates-grid">
-                {certificatesData.map((cert) => (
-                  <div key={cert.id} className="glass-panel certificate-card" style={{ padding: '1.5rem' }}>
-                    <div className="cert-top">
-                      <h4 style={{ fontSize: '1.1rem', marginBottom: '0.25rem' }}>{cert.title}</h4>
-                      <span className="cert-issuer" style={{ fontSize: '0.9rem' }}>{cert.issuer}</span>
-                    </div>
-                    <div className="cert-bottom" style={{ marginTop: 'auto', borderTop: '1px solid var(--border)', paddingTop: '1rem' }}>
-                      <span className="cert-date">{cert.date}</span>
-                      {cert.link && cert.link !== '#' && (
-                        <a 
-                          href={cert.link} 
-                          target="_blank" 
-                          rel="noopener noreferrer" 
-                          className="cert-link"
-                        >
-                          <span>Verify</span>
-                          <ExternalLink size={14} />
-                        </a>
-                      )}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-          </div>
-        </section>
-
-        {/* ==================== CONTACT ==================== */}
-        <section id="contact" className="section" style={{ borderBottom: 'none' }}>
-          <div className="container">
-            <div className="section-header">
-              <span className="section-subtitle">Reach out</span>
-              <h2 className="section-title">Contact Me</h2>
-            </div>
-            
-            <div className="contact-grid">
-              {/* Left Details */}
-              <div className="contact-info">
-                <div>
-                  <h3 className="contact-info-title">Let's discuss something great!</h3>
-                  <p className="contact-info-desc">
-                    I'm always open to discussing new projects, creative ideas or opportunities to be part of your visions. Feel free to shoot a message!
-                  </p>
-                </div>
-                
-                <div className="contact-details">
-                  <div className="contact-detail-item">
-                    <div className="contact-icon-box">
-                      <Mail size={20} />
-                    </div>
-                    <div className="contact-detail-content">
-                      <h4>Email Me</h4>
-                      <a href={`mailto:${personalDetails.socials.email}`}>
-                        {personalDetails.socials.email}
-                      </a>
-                    </div>
-                  </div>
-                  
-                  <div className="contact-detail-item">
-                    <div className="contact-icon-box">
-                      <MapPin size={20} />
-                    </div>
-                    <div className="contact-detail-content">
-                      <h4>Location</h4>
-                      <p style={{ fontSize: '0.9rem' }}>{personalDetails.personalInfo.address}</p>
-                    </div>
-                  </div>
-
-                  <div className="contact-detail-item">
-                    <div className="contact-icon-box">
-                      <Briefcase size={20} />
-                    </div>
-                    <div className="contact-detail-content">
-                      <h4>Work Type</h4>
-                      <p>Remote / Full-time / Freelance</p>
-                    </div>
-                  </div>
-                </div>
+          {/* ==================== EXPERIENCE ==================== */}
+          <section id="experience" className="section">
+            <div className="container">
+              <div className="section-header">
+                <span className="section-subtitle">Career Path</span>
+                <Title level={2} className="section-title">Work Experience</Title>
               </div>
               
-              {/* Right Form Card */}
-              <div className="glass-panel contact-form-card">
-                <form className="contact-form" onSubmit={handleSubmit}>
-                  <div className="form-group">
-                    <label htmlFor="name" className="form-label">Name *</label>
-                    <input 
-                      type="text" 
-                      id="name" 
-                      name="name" 
-                      className="form-input" 
-                      placeholder="John Doe"
-                      value={formData.name}
-                      onChange={handleInputChange}
-                      required
-                    />
-                  </div>
-                  
-                  <div className="form-group">
-                    <label htmlFor="email" className="form-label">Email *</label>
-                    <input 
-                      type="email" 
-                      id="email" 
-                      name="email" 
-                      className="form-input" 
-                      placeholder="john@example.com"
-                      value={formData.email}
-                      onChange={handleInputChange}
-                      required
-                    />
-                  </div>
-                  
-                  <div className="form-group">
-                    <label htmlFor="subject" className="form-label">Subject</label>
-                    <input 
-                      type="text" 
-                      id="subject" 
-                      name="subject" 
-                      className="form-input" 
-                      placeholder="Project Inquiries"
-                      value={formData.subject}
-                      onChange={handleInputChange}
-                    />
-                  </div>
-                  
-                  <div className="form-group">
-                    <label htmlFor="message" className="form-label">Message *</label>
-                    <textarea 
-                      id="message" 
-                      name="message" 
-                      className="form-textarea" 
-                      placeholder="Tell me about your project..."
-                      value={formData.message}
-                      onChange={handleInputChange}
-                      required
-                    />
-                  </div>
-
-                  {formStatus.message && (
-                    <div className={`form-status ${formStatus.type}`}>
-                      {formStatus.message}
-                    </div>
-                  )}
-                  
-                  <button 
-                    type="submit" 
-                    className="form-btn"
-                    disabled={isSubmitting}
-                  >
-                    {isSubmitting ? (
-                      <span>Sending...</span>
-                    ) : (
-                      <>
-                        <span>Send Message</span>
-                        <Send size={18} />
-                      </>
-                    )}
-                  </button>
-                </form>
+              <div style={{ maxWidth: '900px', margin: '0 auto' }}>
+                <Timeline 
+                  mode="start"
+                  items={experienceData.map((exp) => ({
+                    title: (
+                      <Text strong style={{ fontSize: '1rem', color: 'var(--text-primary)', display: 'block', paddingRight: '1rem' }}>
+                        {exp.period}
+                      </Text>
+                    ),
+                    color: theme === 'dark' ? '#818cf8' : '#6366f1',
+                    content: (
+                      <Card className="glass-panel experience-card" styles={{ body: { padding: '1.5rem' } }} style={{ marginBottom: '1.5rem' }}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '0.5rem', marginBottom: '0.75rem' }}>
+                          <Title level={3} style={{ fontSize: '1.2rem', margin: 0, color: 'var(--text-primary)' }}>{exp.role}</Title>
+                          <Text style={{ fontSize: '0.9rem', color: 'var(--accent)', fontWeight: 600 }}>{exp.company}</Text>
+                        </div>
+                        <ul style={{ paddingLeft: '1.25rem', margin: 0, fontSize: '0.9rem', color: 'var(--text-secondary)' }}>
+                          {exp.description.map((bullet, bIndex) => (
+                            <li key={bIndex} style={{ marginBottom: '0.5rem', lineHeight: '1.5' }}>{bullet}</li>
+                          ))}
+                        </ul>
+                      </Card>
+                    )
+                  }))}
+                />
               </div>
             </div>
-          </div>
-        </section>
+          </section>
 
-      </main>
+          {/* ==================== CERTIFICATES ==================== */}
+          <section id="certificates" className="section">
+            <div className="container">
+              <div className="section-header">
+                <span className="section-subtitle">Qualifications</span>
+                <Title level={2} className="section-title">Education & Certificates</Title>
+              </div>
+              
+              {/* Education Sub-Section */}
+              <div style={{ marginBottom: '4rem' }}>
+                <Title level={3} style={{ textTransform: 'uppercase', letterSpacing: '1px', fontSize: '1.25rem', marginBottom: '1.5rem', borderLeft: '4px solid var(--accent)', paddingLeft: '0.75rem', marginTop: 0 }}>
+                  Academic Background
+                </Title>
+                <Row gutter={[24, 24]}>
+                  {educationData.map((edu) => (
+                    <Col xs={24} md={8} key={edu.id} style={{ display: 'flex' }}>
+                      <Card className="glass-panel certificate-card" styles={{ body: { padding: '1.75rem', display: 'flex', flexDirection: 'column', flexGrow: 1 } }} style={{ width: '100%', display: 'flex' }}>
+                        <div style={{ flexGrow: 1 }}>
+                          <Title level={4} style={{ fontSize: '1.15rem', marginBottom: '0.5rem', marginTop: 0 }}>{edu.degree}</Title>
+                          <Text style={{ color: 'var(--accent)', fontWeight: 600, display: 'block', marginBottom: '0.5rem' }}>{edu.school}</Text>
+                          <Paragraph type="secondary" style={{ fontSize: '0.9rem', margin: '0.5rem 0' }}>{edu.details}</Paragraph>
+                        </div>
+                        <Divider style={{ margin: '1rem 0' }} />
+                        <Text type="secondary" style={{ fontSize: '0.8rem', fontWeight: 600 }}>{edu.period}</Text>
+                      </Card>
+                    </Col>
+                  ))}
+                </Row>
+              </div>
 
-      {/* ==================== FOOTER ==================== */}
-      <footer>
-        <div className="container footer-container">
-          <div className="footer-logo">
-            Souly<span>.dev</span>
-          </div>
-          
-          <div className="footer-links">
-            <a href="#home" className="footer-link">Home</a>
-            <a href="#about" className="footer-link">About</a>
-            <a href="#skills" className="footer-link">Skills</a>
-            <a href="#projects" className="footer-link">Projects</a>
-            <a href="#experience" className="footer-link">Experience</a>
-            <a href="#certificates" className="footer-link">Certificates</a>
-            <a href="#contact" className="footer-link">Contact</a>
-          </div>
-          
-          <div className="footer-socials">
-            <a href={personalDetails.socials.github} target="_blank" rel="noopener noreferrer" className="social-icon" aria-label="GitHub">
-              <GithubIcon size={18} />
-            </a>
-            <a href={personalDetails.socials.linkedin} target="_blank" rel="noopener noreferrer" className="social-icon" aria-label="LinkedIn">
-              <LinkedinIcon size={18} />
-            </a>
-            <a href={`mailto:${personalDetails.socials.email}`} className="social-icon" aria-label="Email">
-              <Mail size={18} />
-            </a>
-          </div>
-          
-          <div className="footer-bottom">
-            <p>&copy; {new Date().getFullYear()} {personalDetails.name}. All rights reserved.</p>
-          </div>
-        </div>
-      </footer>
+              {/* Certificates Sub-Section */}
+              <div>
+                <Title level={3} style={{ textTransform: 'uppercase', letterSpacing: '1px', fontSize: '1.25rem', marginBottom: '1.5rem', borderLeft: '4px solid var(--accent)', paddingLeft: '0.75rem', marginTop: 0 }}>
+                  Certificates & Credentials
+                </Title>
+                <Row gutter={[24, 24]}>
+                  {certificatesData.map((cert) => (
+                    <Col xs={24} sm={12} md={6} key={cert.id} style={{ display: 'flex' }}>
+                      <Card className="glass-panel certificate-card" styles={{ body: { padding: '1.5rem', display: 'flex', flexDirection: 'column', flexGrow: 1 } }} style={{ width: '100%', display: 'flex' }}>
+                        <div style={{ flexGrow: 1 }}>
+                          <Title level={4} style={{ fontSize: '1rem', marginBottom: '0.25rem', marginTop: 0 }}>{cert.title}</Title>
+                          <Text type="secondary" style={{ fontSize: '0.85rem', display: 'block' }}>{cert.issuer}</Text>
+                        </div>
+                        <Divider style={{ margin: '1rem 0' }} />
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                          <Text type="secondary" style={{ fontSize: '0.8rem' }}>{cert.date}</Text>
+                          {cert.link && cert.link !== '#' && (
+                            <Button 
+                              type="link" 
+                              size="small"
+                              href={cert.link} 
+                              target="_blank" 
+                              rel="noopener noreferrer" 
+                              icon={<ExternalLink size={12} />}
+                              style={{ padding: 0, display: 'inline-flex', alignItems: 'center', gap: '2px', fontSize: '0.8rem' }}
+                            >
+                              Verify
+                            </Button>
+                          )}
+                        </div>
+                      </Card>
+                    </Col>
+                  ))}
+                </Row>
+              </div>
 
-      {/* Back To Top Button */}
-      {showScrollTop && (
-        <button 
-          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} 
+            </div>
+          </section>
+
+          {/* ==================== CONTACT ==================== */}
+          <section id="contact" className="section" style={{ borderBottom: 'none' }}>
+            <div className="container">
+              <div className="section-header">
+                <span className="section-subtitle">Reach out</span>
+                <Title level={2} className="section-title">Contact Me</Title>
+              </div>
+              
+              <Row gutter={[48, 48]} className="contact-grid">
+                {/* Left Details */}
+                <Col xs={24} lg={10} className="contact-info">
+                  <div>
+                    <Title level={3} className="contact-info-title" style={{ fontSize: '1.5rem', marginBottom: '1rem', marginTop: 0 }}>Let's discuss something great!</Title>
+                    <Paragraph className="contact-info-desc" style={{ fontSize: '1rem', lineHeight: '1.6', color: 'var(--text-secondary)' }}>
+                      I'm always open to discussing new projects, creative ideas or opportunities to be part of your visions. Feel free to shoot a message!
+                    </Paragraph>
+                  </div>
+                  
+                  <div className="contact-details" style={{ marginTop: '2rem', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                    <div className="contact-detail-item" style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
+                      <div className="contact-icon-box" style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'var(--accent-light)', color: 'var(--accent)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                        <Mail size={18} />
+                      </div>
+                      <div className="contact-detail-content">
+                        <Title level={4} style={{ fontSize: '0.95rem', margin: 0 }}>Email Me</Title>
+                        <a href={`mailto:${personalDetails.socials.email}`} style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>
+                          {personalDetails.socials.email}
+                        </a>
+                      </div>
+                    </div>
+                    
+                    <div className="contact-detail-item" style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
+                      <div className="contact-icon-box" style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'var(--accent-light)', color: 'var(--accent)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                        <MapPin size={18} />
+                      </div>
+                      <div className="contact-detail-content">
+                        <Title level={4} style={{ fontSize: '0.95rem', margin: 0 }}>Location</Title>
+                        <Text type="secondary" style={{ fontSize: '0.85rem' }}>{personalDetails.personalInfo.address}</Text>
+                      </div>
+                    </div>
+
+                    <div className="contact-detail-item" style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
+                      <div className="contact-icon-box" style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'var(--accent-light)', color: 'var(--accent)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                        <Briefcase size={18} />
+                      </div>
+                      <div className="contact-detail-content">
+                        <Title level={4} style={{ fontSize: '0.95rem', margin: 0 }}>Work Type</Title>
+                        <Text type="secondary" style={{ fontSize: '0.9rem' }}>Remote / Full-time / Freelance</Text>
+                      </div>
+                    </div>
+                  </div>
+                </Col>
+                
+                {/* Right Form Card */}
+                <Col xs={24} lg={14}>
+                  <Card className="glass-panel contact-form-card" styles={{ body: { padding: '2rem' } }}>
+                    <Form
+                      form={form}
+                      layout="vertical"
+                      onFinish={handleFormSubmit}
+                      className="contact-form"
+                    >
+                      <Form.Item 
+                        name="name" 
+                        label={<Text strong>Name *</Text>} 
+                        rules={[{ required: true, message: 'Please enter your name' }]}
+                      >
+                        <Input size="large" placeholder="John Doe" />
+                      </Form.Item>
+                      
+                      <Form.Item 
+                        name="email" 
+                        label={<Text strong>Email *</Text>} 
+                        rules={[
+                          { required: true, message: 'Please enter your email' },
+                          { type: 'email', message: 'Please enter a valid email address' }
+                        ]}
+                      >
+                        <Input size="large" placeholder="john@example.com" />
+                      </Form.Item>
+                      
+                      <Form.Item 
+                        name="subject" 
+                        label={<Text strong>Subject</Text>}
+                      >
+                        <Input size="large" placeholder="Project Inquiries" />
+                      </Form.Item>
+                      
+                      <Form.Item 
+                        name="message" 
+                        label={<Text strong>Message *</Text>} 
+                        rules={[{ required: true, message: 'Please enter your message' }]}
+                      >
+                        <Input.TextArea rows={4} placeholder="Tell me about your project..." />
+                      </Form.Item>
+
+                      <Form.Item style={{ marginBottom: 0 }}>
+                        <Button 
+                          type="primary" 
+                          htmlType="submit" 
+                          size="large"
+                          loading={isSubmitting}
+                          icon={<Send size={16} style={{ verticalAlign: 'middle' }} />}
+                          style={{
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            gap: '8px',
+                            fontWeight: 600,
+                            padding: '0 2rem',
+                            height: '48px',
+                            backgroundColor: 'var(--accent)',
+                            borderColor: 'var(--accent)'
+                          }}
+                        >
+                          Send Message
+                        </Button>
+                      </Form.Item>
+                    </Form>
+                  </Card>
+                </Col>
+              </Row>
+            </div>
+          </section>
+
+        </Layout.Content>
+
+        {/* ==================== FOOTER ==================== */}
+        <footer style={{ background: 'var(--bg-secondary)', borderTop: '1px solid var(--border)', padding: '3rem 0 2rem 0' }}>
+          <div className="container footer-container" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1.5rem' }}>
+            <div className="footer-logo" style={{ fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>
+              Souly<span style={{ color: 'var(--accent)' }}>.dev</span>
+            </div>
+            
+            <Space size="middle" wrap className="footer-links" style={{ justifyContent: 'center' }}>
+              <a href="#home" className="footer-link">Home</a>
+              <a href="#about" className="footer-link">About</a>
+              <a href="#skills" className="footer-link">Skills</a>
+              <a href="#projects" className="footer-link">Projects</a>
+              <a href="#experience" className="footer-link">Experience</a>
+              <a href="#certificates" className="footer-link">Certificates</a>
+              <a href="#contact" className="footer-link">Contact</a>
+            </Space>
+            
+            <Space size="middle" className="footer-socials" style={{ marginTop: '0.5rem' }}>
+              <Button
+                shape="circle"
+                icon={<GithubIcon size={18} />}
+                href={personalDetails.socials.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="social-icon"
+                aria-label="GitHub"
+              />
+              <Button
+                shape="circle"
+                icon={<LinkedinIcon size={18} />}
+                href={personalDetails.socials.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="social-icon"
+                aria-label="LinkedIn"
+              />
+              <Button
+                shape="circle"
+                icon={<Mail size={18} />}
+                href={`mailto:${personalDetails.socials.email}`}
+                className="social-icon"
+                aria-label="Email"
+              />
+            </Space>
+            
+            <Divider style={{ margin: '1rem 0 0.5rem 0' }} />
+            
+            <div className="footer-bottom">
+              <Text type="secondary">&copy; {new Date().getFullYear()} {personalDetails.name}. All rights reserved.</Text>
+            </div>
+          </div>
+        </footer>
+
+        {/* Back To Top Button via Ant Design FloatButton */}
+        <FloatButton.BackTop 
+          duration={600}
           style={{
-            position: 'fixed',
-            bottom: '30px',
-            right: '30px',
-            backgroundColor: 'var(--accent)',
-            color: 'white',
-            border: 'none',
-            borderRadius: '50%',
-            width: '45px',
-            height: '45px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            cursor: 'pointer',
-            boxShadow: 'var(--shadow-lg)',
-            zIndex: 99,
-            transition: 'all 0.3s ease'
+            right: 30,
+            bottom: 30,
           }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.transform = 'translateY(-3px)';
-            e.currentTarget.style.backgroundColor = 'var(--accent-hover)';
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.transform = 'translateY(0)';
-            e.currentTarget.style.backgroundColor = 'var(--accent)';
-          }}
-          aria-label="Back to top"
-        >
-          <ArrowUp size={20} />
-        </button>
-      )}
-    </div>
+        />
+      </Layout>
+    </ConfigProvider>
   );
 }
 
