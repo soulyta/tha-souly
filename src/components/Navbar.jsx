@@ -12,6 +12,7 @@ export default function Navbar({ theme, toggleTheme }) {
     { name: 'About', href: '#about' },
     { name: 'Skills', href: '#skills' },
     { name: 'Projects', href: '#projects' },
+    { name: 'Highlights', href: '#highlights' },
     { name: 'Experience', href: '#experience' },
     { name: 'Education & Certs', href: '#certificates' },
     { name: 'Contact', href: '#contact' },

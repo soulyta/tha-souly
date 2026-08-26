@@ -24,7 +24,8 @@ import {
   Divider,
   Tag,
   FloatButton,
-  message
+  message,
+  Image
 } from 'antd';
 
 const { Title, Text, Paragraph } = Typography;
@@ -166,6 +167,7 @@ import {
   personalDetails,
   skillsData,
   projectsData,
+  highlightsData,
   experienceData,
   educationData,
   certificatesData
@@ -532,6 +534,57 @@ function App() {
                           </Button>
                         </Col>
                       </Row>
+                    </Card>
+                  </Col>
+                ))}
+              </Row>
+            </div>
+          </section>
+
+          {/* ==================== HIGHLIGHTS ==================== */}
+          <section id="highlights" className="section">
+            <div className="container">
+              <div className="section-header" style={{ marginBottom: '3rem' }}>
+                <span className="section-subtitle">Memorable Moments</span>
+                <Title level={2} className="section-title">Activity Highlights</Title>
+              </div>
+              
+              <Row gutter={[32, 32]} className="highlights-grid">
+                {highlightsData.map((activity) => (
+                  <Col xs={24} md={12} lg={8} key={activity.id}>
+                    <Card 
+                      hoverable 
+                      className="glass-panel highlight-card"
+                      cover={
+                        <div className="highlight-img-wrapper" style={{ height: '240px', overflow: 'hidden', position: 'relative', borderTopLeftRadius: '16px', borderTopRightRadius: '16px' }}>
+                          <Image
+                            src={activity.image}
+                            alt={activity.title}
+                            width="100%"
+                            height="100%"
+                            style={{ objectFit: 'cover' }}
+                            placeholder={
+                              <div style={{ background: 'var(--bg-secondary)', width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                <span style={{ color: 'var(--text-muted)' }}>Loading Activity Image...</span>
+                              </div>
+                            }
+                          />
+                        </div>
+                      }
+                      styles={{ body: { padding: '1.5rem', display: 'flex', flexDirection: 'column', flexGrow: 1 } }}
+                      style={{ height: '100%', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}
+                    >
+                      <div style={{ marginBottom: '0.75rem' }}>
+                        <Tag style={{ border: 'none', background: 'var(--accent-light)', color: 'var(--accent)', fontWeight: 600, borderRadius: '6px', padding: '4px 10px' }}>
+                          {activity.tag}
+                        </Tag>
+                      </div>
+                      <Title level={3} style={{ fontSize: '1.25rem', marginBottom: '0.5rem', marginTop: 0 }}>
+                        {activity.title}
+                      </Title>
+                      <Paragraph type="secondary" style={{ fontSize: '0.9rem', marginBottom: 0, flexGrow: 1, lineHeight: '1.6' }}>
+                        {activity.description}
+                      </Paragraph>
                     </Card>
                   </Col>
                 ))}

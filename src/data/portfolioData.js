@@ -1,3 +1,7 @@
+import modelSchoolTeamImg from '../assets/Model school Team.jpg';
+import teacherTrainingImg from '../assets/Training_school_photograph.jpg';
+import photographImg from '../assets/Photograph.jpg';
+
 export const personalDetails = {
   name: "Tha Souly",
   title: "Web Developer & Data Analyst",
@@ -148,7 +152,7 @@ export const experienceData = [
 export const educationData = [
   {
     id: 1,
-    degree: "Bachelor's Degree in Computer Science",
+    degree: "Bachelor's Degree in Computer Science and Engineering",
     school: "Royal University of Phnom Penh (RUPP)",
     period: "2020 - 2024"
   },
@@ -196,3 +200,28 @@ export const certificatesData = [
     link: "#"
   }
 ];
+
+export const highlightsData = [
+  {
+    id: 1,
+    title: "Developer Team (Model School Standards)",
+    tag: "DPE Team",
+    image: modelSchoolTeamImg,
+    description: "Collaborating with the Department of Primary Education team and colleagues during school system evaluations and infrastructure reviews."
+  },
+  {
+    id: 2,
+    title: "Teacher Training & Orientation",
+    tag: "Workshops",
+    image: teacherTrainingImg,
+    description: "Assisting primary school teachers and education officers with digital assessment training and gathering user feedback."
+  },
+  {
+    id: 3,
+    title: "Workshops, Meetings & Events",
+    tag: "Events",
+    image: photographImg,
+    description: "Participating and collaborating in various workshops, meetings, and key educational events for school system implementation."
+  }
+];
+
