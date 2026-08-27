@@ -47,7 +47,7 @@ Dam Dek High School
 (2014 - 2020)
 
 TECHNICAL & SOFT SKILLS
-- Web Development: Front-End Development, React.js & Ant Design, JavaScript, Git & GitHub, Docker, System Testing / QA
+- Web Development: Front-End Development, React.js & Ant Design, JavaScript, Figma, Git & GitHub, Docker, System Testing / QA
 - Data & Analytics: Data Entry & Data Management, Data Analysis & Reporting, Microsoft Office
 - Productivity & Media: AI Tools for Productivity, Video & Audio Editing, Photography
 - Communication & Languages: Communication & Teamwork, Khmer (Native, 98%), English (Professional, 50%)

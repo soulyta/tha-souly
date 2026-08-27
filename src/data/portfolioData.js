@@ -1,5 +1,5 @@
 import modelSchoolTeamImg from '../assets/Model school Team.jpg';
-import teacherTrainingImg from '../assets/Training_school_photograph.jpg';
+import teacherTrainingImg from '../assets/Training_Ouyadav district2.jpg';
 import photographImg from '../assets/Photograph.jpg';
 
 export const personalDetails = {
@@ -36,8 +36,8 @@ export const skillsData = [
   {
     category: "Web Development",
     skills: [
-      { name: "Front-End Development", percentage: 70 },
-      { name: "React.js & Ant Design", percentage: 40 },
+      { name: "Front-End Development", percentage: 60 },
+      { name: "React.js & Ant Design", percentage: 50 },
       { name: "System Testing / QA", percentage: 60 }
     ],
     technologies: [
@@ -46,6 +46,7 @@ export const skillsData = [
       { name: "HTML5", icon: "html" },
       { name: "CSS3", icon: "css" },
       { name: "Ant Design", icon: "antd" },
+      { name: "Figma", icon: "figma" },
       { name: "Git", icon: "git" },
       { name: "Docker", icon: "docker" }
     ]
@@ -53,8 +54,8 @@ export const skillsData = [
   {
     category: "Data Analytics & Management",
     skills: [
-      { name: "Data Entry & Data Management", percentage: 75 },
-      { name: "Data Analysis & Reporting", percentage: 70 },
+      { name: "Data Entry & Data Management", percentage: 65 },
+      { name: "Data Analysis & Reporting", percentage: 60 },
       { name: "Microsoft Office", percentage: 80 }
     ],
     technologies: [
