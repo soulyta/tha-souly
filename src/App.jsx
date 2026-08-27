@@ -206,16 +206,37 @@ function App() {
     localStorage.setItem('theme', theme);
   }, [theme]);
 
-  const handleFormSubmit = (values) => {
+  const handleFormSubmit = async (values) => {
     setIsSubmitting(true);
     console.log('Contact form submitted with values:', values);
 
-    // Mock API submission
-    setTimeout(() => {
+    try {
+      const response = await fetch(`https://formsubmit.co/ajax/${personalDetails.socials.email}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          name: values.name,
+          email: values.email,
+          subject: values.subject || 'Portfolio Contact Form',
+          message: values.message
+        })
+      });
+
+      if (response.ok) {
+        message.success('Thank you! Your message has been sent successfully. I will get back to you soon.');
+        form.resetFields();
+      } else {
+        message.error('Failed to send message. Please try again or email me directly.');
+      }
+    } catch (error) {
+      console.error('Error sending message:', error);
+      message.error('An error occurred. Please try again or email me directly.');
+    } finally {
       setIsSubmitting(false);
-      message.success('Thank you! Your message has been sent successfully. I will get back to you soon.');
-      form.resetFields();
-    }, 1500);
+    }
   };
 
   const scrollToSection = (id) => {
