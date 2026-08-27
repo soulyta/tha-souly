@@ -13,12 +13,15 @@ March 2025 -
 Present
 Web Developer & Data Analyst Intern
 Department of Primary Education, Ministry of Education, Youth and Sport (MoEYS)
-- Processed and validated large-scale student data in the PLP System, ensuring accuracy and completeness for over 2.2 million student records.
-- Developed and maintained frontend modules for the Model School Standard System (Infrastructure Module) using React.js and Ant Design (AntD).
-- Analyzed school databases, prepared statistical reports, and assisted in identifying and resolving data quality inconsistencies.
-- Performed rigorous system testing in production environments before deployment to ensure module functionality.
-- Provided direct technical support, troubleshooting guidelines, and instruction to teachers and education officers.
-- Coordinated meetings, workshops, administrative documentation, and collaborated with cross-functional teams to improve system usability.
+- Analyze and organize training and assessment data, and prepare summary reports for project evaluation and decision-making.
+- Process large-scale student data in the PLP System, ensuring accuracy and completeness for over 2.2 million student records.
+- Assist in monitoring data quality and resolving inconsistencies.
+- Develop and maintain front-end code for the Model School Standard System (Infrastructure Module).
+- Perform system testing in the production environment before implementation to verify functionality and identify issues.
+- Support teachers and education officers with system usage, troubleshooting, and responding to user inquiries.
+- Develop front-end features using React.js and Ant Design.
+- Assist with meetings, workshops, training activities, and administrative documentation.
+- Collaborate with team members to improve workflow efficiency and system usability.
 
 July 2024 -
 November 2024
@@ -29,7 +32,7 @@ Office of Data Entry
 - Set up products in the warehouse to be delivered to clients.
 - Provided product-related information to shop staff, resolving issues promptly.
 - Input product details into the system and calculated store cash registers for successful delivery confirmation.
-- Calculated and verified driver collections for all cash-on-delivery (COD) customer products.
+- Calculated and verified driver collections for all cash-on-delivery customer products.
 - Reconciled and checked all cash collections before final submission to the General Manager (GM).
 
 EDUCATION

@@ -125,11 +125,14 @@ export const experienceData = [
     company: "Department of Primary Education, Ministry of Education, Youth and Sport (MoEYS)",
     period: "March 2025 - Present",
     description: [
+      "Analyze and organize training and assessment data, and prepare summary reports for project evaluation and decision-making.",
       "Process large-scale student data in the PLP System, ensuring accuracy and completeness for over 2.2 million student records.",
-      "Develop and maintain front-end code for the Model School Standard System (Infrastructure Module) using React.js and Ant Design.",
-      "Analyze and organize training and assessment data, prepare summary reports, and assist in monitoring data quality and resolving inconsistencies.",
-      "Perform system testing in the production environment before implementation to verify functionality.",
-      "Support teachers and education officers with system usage, troubleshooting, and responding to inquiries.",
+      "Assist in monitoring data quality and resolving inconsistencies.",
+      "Develop and maintain front-end code for the Model School Standard System (Infrastructure Module).",
+      "Perform system testing in the production environment before implementation to verify functionality and identify issues.",
+      "Support teachers and education officers with system usage, troubleshooting, and responding to user inquiries.",
+      "Develop front-end features using React.js and Ant Design.",
+      "Assist with meetings, workshops, training activities, and administrative documentation.",
       "Collaborate with team members to improve workflow efficiency and system usability."
     ]
   },
@@ -144,7 +147,7 @@ export const experienceData = [
       "Set up products in the warehouse to be delivered to clients.",
       "Provided product-related information to shop staff, resolving issues promptly.",
       "Input product details into the system and calculated store cash registers for successful delivery confirmation.",
-      "Calculated and verified driver collections for all cash-on-delivery (COD) customer products.",
+      "Calculated and verified driver collections for all cash-on-delivery customer products.",
       "Reconciled and checked all cash collections before final submission to the General Manager (GM)."
     ]
   }
